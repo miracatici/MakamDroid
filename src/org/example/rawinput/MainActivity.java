@@ -67,7 +67,7 @@ public class MainActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	private void setProperties(){
-		String air;
+		String airdengonderdik;
 		fields = R.raw.class.getFields();
 		recorder = new AudioRecord(MediaRecorder.AudioSource.MIC, 44100, 
 				AudioFormat.CHANNEL_IN_MONO,
@@ -295,8 +295,8 @@ public class MainActivity extends Activity {
 		startActivityForResult(intent, FILE_CHOOSER);
 	}
 	public void graph(View view){
-		Intent intent2 = new Intent(this,SecondActivity.class);
-		startActivity(intent2);
+//		Intent intent2 = new Intent(this,SecondActivity.class);
+//		startActivity(intent2);
 	}
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 	    if ((requestCode == FILE_CHOOSER) && (resultCode == RESULT_OK)) {
