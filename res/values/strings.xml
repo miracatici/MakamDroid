@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">RawInput</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="btnStart">Start Recording</string>
+    <string name="btnStop">Stop Recording</string>
+    <string name="txtPitch">Pitch Freq</string>
+    <string name="btnPlay">Play Recording</string>
+    <string name="btnPStop">Stop Playing</string>
+    <string name="btnSelect">Select File</string>
+    <string name="btnPlayWav">Play Wave File</string>
+    <string name="btnStopWav">Stop Wave File</string>
+    <string name="title_activity_second">SecondActivity</string>
+    <string name="title_activity_file_chooser">FileChooser</string>
+	<string name="hello">Hello World, FileChooser!</string>
+    <string name="folder">Folder</string>
+    <string name="parentDirectory">Parent Directory</string>
+    <string name="fileSize">File Size</string>
+    <string name="currentDir">Current Dir</string>
+    <string name="selectedPlay">Selected Play</string>
+   
+</resources>
