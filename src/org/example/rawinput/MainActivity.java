@@ -67,7 +67,7 @@ public class MainActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	private void setProperties(){
-		String airdengonderdik;
+		String prodangonderdim;
 		fields = R.raw.class.getFields();
 		recorder = new AudioRecord(MediaRecorder.AudioSource.MIC, 44100, 
 				AudioFormat.CHANNEL_IN_MONO,
