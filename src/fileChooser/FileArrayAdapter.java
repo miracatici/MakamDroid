@@ -41,8 +41,8 @@ public class FileArrayAdapter extends ArrayAdapter<Option> {
 		final Option o = items.get(position);
 		if (o != null) {
 			ImageView im = (ImageView) v.findViewById(R.id.img1);
-			TextView t1 = (TextView) v.findViewById(R.id.TextView01);
-			TextView t2 = (TextView) v.findViewById(R.id.TextView02);
+			TextView t1 = (TextView) v.findViewById(R.id.ans3);
+			TextView t2 = (TextView) v.findViewById(R.id.ans2);
 			
 			if(o.getData().equalsIgnoreCase("folder")){
 				im.setImageResource(R.drawable.folder);

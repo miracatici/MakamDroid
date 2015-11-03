@@ -33,8 +33,10 @@ import utilities.AudioUtilities;
 
 public class MainActivity extends Activity {
 	private TextView txtPitch; 
-	private Button btnStart, btnStop, btnSelect, btnPlay, btnPStop, btnPlayWav, btnStopWav, btnSelPlay;
+	private Button btnStart, btnStop, btnSelect, btnPlay, btnPStop, btnPlayWav, btnStopWav, btnSelPlay, 
+					btnSelQ, btnPlayQ, btnRecA, btnAnalyze;
 	private ImageButton nextTab,graph;
+	private TextView res1, res2, res3, ans1, ans2, ans3;
 	private Yin yin; 
 	private AudioRecord recorder; 
 	private boolean isRunning;
@@ -79,6 +81,11 @@ public class MainActivity extends Activity {
 		btnPStop = (Button) findViewById(R.id.btnPStop);
 		btnPlayWav = (Button) findViewById(R.id.btnPlayWav);
 		btnStopWav = (Button) findViewById(R.id.btnStopWav);
+		btnSelQ = (Button) findViewById(R.id.btnSelQ);
+		btnPlayQ = (Button) findViewById(R.id.btnPlayQ);
+		btnRecA = (Button) findViewById(R.id.btnRecA);
+		btnAnalyze = (Button) findViewById(R.id.btnAnalyze);
+
 		nextTab = (ImageButton) findViewById(R.id.nextTab);
 		txtPitch = (TextView) findViewById(R.id.txtPitch);
 		btnSelPlay = (Button) findViewById(R.id.btnSelPlay);
@@ -173,6 +180,50 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				mpintro.start();
+			}
+		});
+		btnSelQ.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+			}
+		});
+		btnPlayQ.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				switch(btnPlayQ.getText().toString()) {
+					case "Play Q":
+						btnPlayQ.setText("Stop Q");
+						// Question Play Function
+						break;
+					case "Stop Q" :
+						btnPlayQ.setText("Play Q");
+						// Stop function
+						break;
+				}
+			}
+		});
+		
+		btnRecA.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				switch(btnRecA.getText().toString()) {
+					case "Rec A":
+						btnRecA.setText("Stop A");;
+						// Recording Function
+						break;
+					case "Stop A" :
+						btnRecA.setText("Rec A");
+						// Stop function
+						// Object create function
+						break;						
+				}
+			}
+		});
+		btnAnalyze.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// Analyze and comparison function
+				// Function may be in the Answer Class
 			}
 		});
 	}

@@ -2,8 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#333333"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -89,7 +89,6 @@
             android:layout_height="wrap_content"
             android:enabled="false"
             android:text="@string/btnStopWav" />
-
     </LinearLayout>
 
     <LinearLayout
@@ -104,7 +103,7 @@
 
         <Button
             android:id="@+id/btnSelPlay"
-			style="?android:attr/buttonStyleSmall" 
+            style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/selectedPlay" />
@@ -114,7 +113,93 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@android:drawable/btn_star_big_on" />
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/btnSelQ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Q" />
+
+        <Button
+            android:id="@+id/btnPlayQ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Play Q" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.27" >
+
+        <Button
+            android:id="@+id/btnRecA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rec A" />
+
+        <Button
+            android:id="@+id/btnAnalyze"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Analyze" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/res1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Res 1"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/res2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Res 2"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/res3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Res 3"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/ans1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ans 1"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/ans2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ans 2"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/ans3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ans 3"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
     </LinearLayout>
 
 </LinearLayout>
