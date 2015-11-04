@@ -30,4 +30,10 @@
 		<nature>com.android.ide.eclipse.adt.AndroidNature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<variableList>
+		<variable>
+			<name>Raw</name>
+			<value>file:/Users/miracatici/Documents/workspace/MakamDroid/res/raw</value>
+		</variable>
+	</variableList>
 </projectDescription>

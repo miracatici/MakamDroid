@@ -27,6 +27,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+import backEnd.Question;
 import be.tarsos.dsp.pitch.Yin;
 import fileChooser.FileChooser;
 import utilities.AudioUtilities;
@@ -36,7 +37,7 @@ public class MainActivity extends Activity {
 	private Button btnStart, btnStop, btnSelect, btnPlay, btnPStop, btnPlayWav, btnStopWav, btnSelPlay, 
 					btnSelQ, btnPlayQ, btnRecA, btnAnalyze;
 	private ImageButton nextTab,graph;
-	private TextView res1, res2, res3, ans1, ans2, ans3;
+//	private TextView res1, res2, res3, ans1, ans2, ans3;
 	private Yin yin; 
 	private AudioRecord recorder; 
 	private boolean isRunning;
@@ -44,7 +45,10 @@ public class MainActivity extends Activity {
 	private MediaPlayer mpintro; 
 	private AudioTrack at; 
 	private Field[] fields; 
-	private int position = 0; final int FILE_CHOOSER=1;
+	private int position = 1; 
+	final int FILE_CHOOSER=1;
+	Question q1set;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -145,7 +149,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				try {
-					audioPlayer(fields[position].getInt((fields[position]))); //fields[position].getInt((fields[position])) R.raw.mrc
+					audioPlayer(fields[position].getInt(fields[position])); //fields[position].getInt((fields[position])) R.raw.mrc
 				} catch (IllegalArgumentException e) {
 					e.printStackTrace();
 				} catch (IllegalAccessException e) {
@@ -185,6 +189,8 @@ public class MainActivity extends Activity {
 		btnSelQ.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				btnSelQ.setEnabled(false);
+				q1set = new Question(MainActivity.this,1);
 			}
 		});
 		btnPlayQ.setOnClickListener(new OnClickListener() {
@@ -194,10 +200,13 @@ public class MainActivity extends Activity {
 					case "Play Q":
 						btnPlayQ.setText("Stop Q");
 						// Question Play Function
+						q1set.play(position);
+						position++;
 						break;
 					case "Stop Q" :
 						btnPlayQ.setText("Play Q");
 						// Stop function
+						q1set.stop(position-1);
 						break;
 				}
 			}

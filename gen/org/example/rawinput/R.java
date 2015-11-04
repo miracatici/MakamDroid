@@ -83,23 +83,21 @@ public final class R {
         public static final int second=0x7f090002;
     }
     public static final class raw {
-        public static final int mrc=0x7f050000;
-        public static final int test=0x7f050001;
-        public static final int test11=0x7f050002;
-        public static final int test12=0x7f050003;
-        public static final int test13=0x7f050004;
-        public static final int test14=0x7f050005;
-        public static final int test15=0x7f050006;
-        public static final int test21=0x7f050007;
-        public static final int test22=0x7f050008;
-        public static final int test23=0x7f050009;
-        public static final int test24=0x7f05000a;
-        public static final int test25=0x7f05000b;
-        public static final int test31=0x7f05000c;
-        public static final int test32=0x7f05000d;
-        public static final int test33=0x7f05000e;
-        public static final int test34=0x7f05000f;
-        public static final int test35=0x7f050010;
+        public static final int n_1_300=0x7f050000;
+        public static final int n_1_330=0x7f050001;
+        public static final int n_1_360=0x7f050002;
+        public static final int n_1_390=0x7f050003;
+        public static final int n_1_420=0x7f050004;
+        public static final int n_2_300_330=0x7f050005;
+        public static final int n_2_360_390=0x7f050006;
+        public static final int n_2_420_450=0x7f050007;
+        public static final int n_2_480_510=0x7f050008;
+        public static final int n_2_540_570=0x7f050009;
+        public static final int n_3_300_330_360=0x7f05000a;
+        public static final int n_3_390_420_450=0x7f05000b;
+        public static final int n_3_480_510_540=0x7f05000c;
+        public static final int n_3_570_600_630=0x7f05000d;
+        public static final int n_3_660_690_720=0x7f05000e;
     }
     public static final class string {
         public static final int action_settings=0x7f070002;
