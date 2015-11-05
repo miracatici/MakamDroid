@@ -20,5 +20,11 @@
     <string name="fileSize">File Size</string>
     <string name="currentDir">Current Dir</string>
     <string name="selectedPlay">Selected Play</string>
+    <string name="btnSelQ">Select Q</string>
+    <string name="btnPlayQ">Play Q</string>
+    <string name="btnRecA">Rec A</string>
+    <string name="btnAnalyze">Analyze</string>
+    <string name="btnNext">Next</string>
+    <string name="btnPlayA">Play A</string>
    
 </resources>

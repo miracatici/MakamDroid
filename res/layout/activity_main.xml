@@ -12,194 +12,110 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
-        <Button
-            android:id="@+id/btnStart"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/btnStart" />
-
-        <Button
-            android:id="@+id/btnStop"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:enabled="false"
-            android:text="@string/btnStop" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <Button
-            android:id="@+id/btnSelect"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/btnSelect" />
-
-        <Button
-            android:id="@+id/btnPlay"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:enabled="false"
-            android:text="@string/btnPlay" />
-
-        <Button
-            android:id="@+id/btnPStop"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:enabled="false"
-            android:text="@string/btnPStop" />
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/txtPitch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="@string/txtPitch"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
-
-        <Button
-            android:id="@+id/btnPlayWav"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/btnPlayWav" />
-
-        <Button
-            android:id="@+id/btnStopWav"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:enabled="false"
-            android:text="@string/btnStopWav" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <ImageButton
-            android:id="@+id/nextTab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_media_play" />
-
-        <Button
-            android:id="@+id/btnSelPlay"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/selectedPlay" />
-
-        <ImageButton
-            android:id="@+id/graph"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/btn_star_big_on" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
         <Button
             android:id="@+id/btnSelQ"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Select Q" />
+            android:text="@string/btnSelQ" />
 
         <Button
             android:id="@+id/btnPlayQ"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Play Q" />
+            android:text="@string/btnPlayQ" />
+
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btnNext" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.27" >
+        android:layout_weight="0.06" >
 
         <Button
             android:id="@+id/btnRecA"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Rec A" />
+            android:text="@string/btnRecA" />
+
+        <Button
+            android:id="@+id/btnPlayA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btnPlayA" />
 
         <Button
             android:id="@+id/btnAnalyze"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Analyze" />
+            android:text="@string/btnAnalyze" />
+
+        <ImageButton
+            android:id="@+id/btnFolder"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:src="@drawable/folder" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_weight="0.10" >
 
         <TextView
             android:id="@+id/res1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Res 1"
+            android:text=""
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
             android:id="@+id/res2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Res 2"
+            android:text=""
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
             android:id="@+id/res3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Res 3"
+            android:text=""
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_weight="0.84" >
 
         <TextView
             android:id="@+id/ans1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ans 1"
+            android:text=""
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
             android:id="@+id/ans2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ans 2"
+            android:text=""
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
             android:id="@+id/ans3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ans 3"
+            android:text=""
             android:textAppearance="?android:attr/textAppearanceMedium" />
+
     </LinearLayout>
 
 </LinearLayout>

@@ -27,15 +27,15 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-import backEnd.Question;
 import be.tarsos.dsp.pitch.Yin;
+import dataAndroid.Question;
 import fileChooser.FileChooser;
 import utilities.AudioUtilities;
 
-public class MainActivity extends Activity {
+public class MainActivity2 extends Activity {
 	private TextView txtPitch; 
 	private Button btnStart, btnStop, btnSelect, btnPlay, btnPStop, btnPlayWav, btnStopWav, btnSelPlay, 
-					btnSelQ, btnPlayQ, btnRecA, btnAnalyze;
+					btnSelQ, btnPlayQ,btnNext, btnRecA, btnAnalyze;
 	private ImageButton nextTab,graph;
 //	private TextView res1, res2, res3, ans1, ans2, ans3;
 	private Yin yin; 
@@ -78,22 +78,23 @@ public class MainActivity extends Activity {
 				AudioFormat.CHANNEL_IN_MONO,
 				AudioFormat.ENCODING_PCM_16BIT,
 				bufferSize);
-		btnStart = (Button) findViewById(R.id.btnStart);
-		btnStop = (Button) findViewById(R.id.btnStop);
-		btnPlay = (Button) findViewById(R.id.btnPlay);
-		btnSelect = (Button) findViewById(R.id.btnSelect);
-		btnPStop = (Button) findViewById(R.id.btnPStop);
-		btnPlayWav = (Button) findViewById(R.id.btnPlayWav);
-		btnStopWav = (Button) findViewById(R.id.btnStopWav);
+//		btnStart = (Button) findViewById(R.id.btnStart);
+//		btnStop = (Button) findViewById(R.id.btnStop);
+//		btnPlay = (Button) findViewById(R.id.btnPlay);
+//		btnSelect = (Button) findViewById(R.id.btnSelect);
+//		btnPStop = (Button) findViewById(R.id.btnPStop);
+//		btnPlayWav = (Button) findViewById(R.id.btnPlayWav);
+//		btnStopWav = (Button) findViewById(R.id.btnStopWav);
 		btnSelQ = (Button) findViewById(R.id.btnSelQ);
 		btnPlayQ = (Button) findViewById(R.id.btnPlayQ);
 		btnRecA = (Button) findViewById(R.id.btnRecA);
 		btnAnalyze = (Button) findViewById(R.id.btnAnalyze);
+		btnNext = (Button) findViewById(R.id.btnNext);
 
-		nextTab = (ImageButton) findViewById(R.id.nextTab);
-		txtPitch = (TextView) findViewById(R.id.txtPitch);
-		btnSelPlay = (Button) findViewById(R.id.btnSelPlay);
-		graph = (ImageButton) findViewById(R.id.graph);
+//		nextTab = (ImageButton) findViewById(R.id.nextTab);
+//		txtPitch = (TextView) findViewById(R.id.txtPitch);
+//		btnSelPlay = (Button) findViewById(R.id.btnSelPlay);
+//		graph = (ImageButton) findViewById(R.id.graph);
 		graph.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -113,7 +114,7 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				btnStart.setEnabled(false);
 				btnStop.setEnabled(true);
-				Toast.makeText(MainActivity.this, "Basliyor", Toast.LENGTH_SHORT).show();
+				Toast.makeText(MainActivity2.this, "Basliyor", Toast.LENGTH_SHORT).show();
 				startTracking();
 			}
 		});
@@ -124,13 +125,13 @@ public class MainActivity extends Activity {
 				btnStop.setEnabled(false);
 				recorder.stop();
 				isRunning = false;
-				Toast.makeText(MainActivity.this, "Durduruldu", Toast.LENGTH_SHORT).show();
+				Toast.makeText(MainActivity2.this, "Durduruldu", Toast.LENGTH_SHORT).show();
 			}
 		});
 		btnPlay.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(MainActivity.this, "Basliyor", Toast.LENGTH_SHORT).show();
+				Toast.makeText(MainActivity2.this, "Basliyor", Toast.LENGTH_SHORT).show();
 				mpintro.start();
 				btnPStop.setEnabled(true);
 				btnPlay.setEnabled(false);
@@ -142,7 +143,7 @@ public class MainActivity extends Activity {
 				mpintro.pause();
 				btnPStop.setEnabled(false);
 				btnPlay.setEnabled(true);
-				Toast.makeText(MainActivity.this, "Durduruldu", Toast.LENGTH_SHORT).show();
+				Toast.makeText(MainActivity2.this, "Durduruldu", Toast.LENGTH_SHORT).show();
 			}
 		});
 		btnSelect.setOnClickListener(new OnClickListener(){
@@ -164,7 +165,7 @@ public class MainActivity extends Activity {
 				try {
 					btnStopWav.setEnabled(true);
 					btnPlayWav.setEnabled(false);
-					Toast.makeText(MainActivity.this, "Basliyor", Toast.LENGTH_SHORT).show();
+					Toast.makeText(MainActivity2.this, "Basliyor", Toast.LENGTH_SHORT).show();
 					readWav(Environment.getExternalStorageDirectory()+"/Download/test.mp3/");
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -177,7 +178,7 @@ public class MainActivity extends Activity {
 				at.pause();
 				btnStopWav.setEnabled(false);
 				btnPlayWav.setEnabled(true);
-				Toast.makeText(MainActivity.this, "Durduruldu", Toast.LENGTH_SHORT).show();
+				Toast.makeText(MainActivity2.this, "Durduruldu", Toast.LENGTH_SHORT).show();
 			}
 		});
 		btnSelPlay.setOnClickListener(new OnClickListener() {
@@ -190,7 +191,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				btnSelQ.setEnabled(false);
-				q1set = new Question(MainActivity.this,1);
+				q1set = new Question(MainActivity2.this,"n",1);
 			}
 		});
 		btnPlayQ.setOnClickListener(new OnClickListener() {
@@ -201,13 +202,24 @@ public class MainActivity extends Activity {
 						btnPlayQ.setText("Stop Q");
 						// Question Play Function
 						q1set.play(position);
-						position++;
 						break;
 					case "Stop Q" :
 						btnPlayQ.setText("Play Q");
 						// Stop function
-						q1set.stop(position-1);
+						q1set.stop(position);
 						break;
+				}
+			}
+		});
+		btnNext.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				q1set.stop(position);
+				position++;
+				btnPlayQ.setText("Play Q");
+				if(position == q1set.getSoundNumber()){
+					btnNext.setEnabled(false);
+					Toast.makeText(MainActivity2.this, "Maximum files is played", Toast.LENGTH_SHORT).show();
 				}
 			}
 		});
@@ -302,7 +314,7 @@ public class MainActivity extends Activity {
 				mpintro.setDataSource((String)path);
 				mpintro.prepareAsync();
 			} else if (path instanceof Integer){
-				mpintro = MediaPlayer.create(MainActivity.this, (Integer) path);
+				mpintro = MediaPlayer.create(MainActivity2.this, (Integer) path);
 				playerListener();
 			}
 		} catch (IllegalArgumentException e) {
@@ -353,10 +365,6 @@ public class MainActivity extends Activity {
 		Intent intent = new Intent(this, FileChooser.class);
 		startActivityForResult(intent, FILE_CHOOSER);
 	}
-	public void graph(View view){
-//		Intent intent2 = new Intent(this,SecondActivity.class);
-//		startActivity(intent2);
-	}
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 	    if ((requestCode == FILE_CHOOSER) && (resultCode == RESULT_OK)) {
 	        String fileSelected = data.getStringExtra("fileSelected");
@@ -364,5 +372,9 @@ public class MainActivity extends Activity {
 	        Toast.makeText(this, "file selected "+fileSelected, Toast.LENGTH_SHORT).show();
 	        FileChooser.currentDir = new File(fileSelected);
 	    }                   
+	}
+	public void graph(View view){
+//		Intent intent2 = new Intent(this,SecondActivity.class);
+//		startActivity(intent2);
 	}
 }

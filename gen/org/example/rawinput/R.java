@@ -47,30 +47,22 @@ public final class R {
         public static final int zip32=0x7f02000f;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a0017;
-        public static final int ans1=0x7f0a0012;
-        public static final int ans2=0x7f0a0013;
-        public static final int ans3=0x7f0a0014;
-        public static final int btnAnalyze=0x7f0a000e;
-        public static final int btnPStop=0x7f0a0004;
-        public static final int btnPlay=0x7f0a0003;
-        public static final int btnPlayQ=0x7f0a000c;
-        public static final int btnPlayWav=0x7f0a0006;
-        public static final int btnRecA=0x7f0a000d;
-        public static final int btnSelPlay=0x7f0a0009;
-        public static final int btnSelQ=0x7f0a000b;
-        public static final int btnSelect=0x7f0a0002;
-        public static final int btnStart=0x7f0a0000;
-        public static final int btnStop=0x7f0a0001;
-        public static final int btnStopWav=0x7f0a0007;
-        public static final int graph=0x7f0a000a;
-        public static final int img1=0x7f0a0016;
-        public static final int mySimpleXYPlot=0x7f0a0015;
-        public static final int nextTab=0x7f0a0008;
-        public static final int res1=0x7f0a000f;
-        public static final int res2=0x7f0a0010;
-        public static final int res3=0x7f0a0011;
-        public static final int txtPitch=0x7f0a0005;
+        public static final int action_settings=0x7f0a000f;
+        public static final int ans1=0x7f0a000a;
+        public static final int ans2=0x7f0a000b;
+        public static final int ans3=0x7f0a000c;
+        public static final int btnAnalyze=0x7f0a0005;
+        public static final int btnFolder=0x7f0a0006;
+        public static final int btnNext=0x7f0a0002;
+        public static final int btnPlayA=0x7f0a0004;
+        public static final int btnPlayQ=0x7f0a0001;
+        public static final int btnRecA=0x7f0a0003;
+        public static final int btnSelQ=0x7f0a0000;
+        public static final int img1=0x7f0a000e;
+        public static final int mySimpleXYPlot=0x7f0a000d;
+        public static final int res1=0x7f0a0007;
+        public static final int res2=0x7f0a0008;
+        public static final int res3=0x7f0a0009;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -98,13 +90,27 @@ public final class R {
         public static final int n_3_480_510_540=0x7f05000c;
         public static final int n_3_570_600_630=0x7f05000d;
         public static final int n_3_660_690_720=0x7f05000e;
+        public static final int r_0_1=0x7f05000f;
+        public static final int r_0_2=0x7f050010;
+        public static final int r_0_3=0x7f050011;
+        public static final int r_0_4=0x7f050012;
+        public static final int r_0_5=0x7f050013;
+        public static final int r_0_6=0x7f050014;
+        public static final int r_0_7=0x7f050015;
+        public static final int r_0_8=0x7f050016;
     }
     public static final class string {
         public static final int action_settings=0x7f070002;
         public static final int app_name=0x7f070000;
+        public static final int btnAnalyze=0x7f070016;
+        public static final int btnNext=0x7f070017;
         public static final int btnPStop=0x7f070007;
         public static final int btnPlay=0x7f070006;
+        public static final int btnPlayA=0x7f070018;
+        public static final int btnPlayQ=0x7f070014;
         public static final int btnPlayWav=0x7f070009;
+        public static final int btnRecA=0x7f070015;
+        public static final int btnSelQ=0x7f070013;
         public static final int btnSelect=0x7f070008;
         public static final int btnStart=0x7f070003;
         public static final int btnStop=0x7f070004;
