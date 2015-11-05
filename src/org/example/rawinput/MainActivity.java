@@ -25,7 +25,7 @@ public class MainActivity extends Activity {
 	final int FILE_CHOOSER=1;
 	private Question q1set;
 	private Answer answer1;
-	public static final int NN = 1;
+	public static final int NN = 2;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -64,7 +64,8 @@ public class MainActivity extends Activity {
 		btnNext = (Button) findViewById(R.id.btnNext);
 		btnFolder = (ImageButton) findViewById(R.id.btnFolder);
 		btnPlayA = (Button) findViewById(R.id.btnPlayA); 
-		
+		answer1 = new Answer();
+
 		btnPlayA.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -129,7 +130,6 @@ public class MainActivity extends Activity {
 				switch(btnRecA.getText().toString()) {
 					case "Rec A":
 						btnRecA.setText("Stop A");;
-						answer1 = new Answer();
 						answer1.startRecord();
 						break;
 					case "Stop A" :

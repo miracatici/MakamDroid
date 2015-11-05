@@ -371,7 +371,7 @@ public abstract class AudioUtilities {
 	public static int findMedian(int[] array){				// Finding median of given array
 		int x=0;
 		if(array.length%2==0){
-			x =Math.round((array[array.length/2] + array[(array.length/2)-1])/2);
+			x = Math.round((array[array.length/2] + array[(array.length/2)-1])/2);
 		}
 		else{
 			x = Math.round(array[(array.length-1)/2]);
@@ -382,8 +382,7 @@ public abstract class AudioUtilities {
 		float x = 0f;
 		if(array.length%2==0){
 			x = (float) ((array[array.length/2] + array[(array.length/2)-1])/2);
-		}
-		else{
+		} else {
 			x = (float) (array[(array.length-1)/2]);
 		}
 		return x;	

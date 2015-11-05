@@ -19,12 +19,13 @@ public class Answer {
 	private AudioTrack audioTrack;
 
 	public Answer(){
+		
+	}
+	public void startRecord(){
 		recorder = new AudioRecord(MediaRecorder.AudioSource.MIC, 44100, 
 				AudioFormat.CHANNEL_IN_MONO,
 				AudioFormat.ENCODING_PCM_16BIT,
 				bufferSize);
-	}
-	public void startRecord(){
 		new Thread (new Runnable(){
 			@Override
 			public void run() {
@@ -49,6 +50,8 @@ public class Answer {
 	}
 	public void stopRecord(){
 		recorder.stop();
+		recorder.release();
+		recorder = null;
 		isRunning = false;
 		rawData = out.toByteArray();
 	}
@@ -64,13 +67,14 @@ public class Answer {
 	}
 	public void stopPlay(){
 		audioTrack.stop();
+		audioTrack.release();
 	}
 	public float[] analyze(int noteNumber){
-		PitchDetection pd = new PitchDetection(AudioUtilities.byteToFloatArray(rawData),1764);
+		float[] answerResult = new float[noteNumber];
+		PitchDetection pd = new PitchDetection(AudioUtilities.byteToFloatArray(rawData),44100);
 		float[] pr = pd.getPitchResult();
 		float[][] prc = pd.chunkPitchTrack(pr);
 		float[][] prcl = pd.pickLongChunks(prc, noteNumber);
-		float[] answerResult = new float[noteNumber];
 		for (int i = 0; i < prcl.length; i++) {
 			answerResult[i] = AudioUtilities.findMedian(prcl[i]);
 		}
