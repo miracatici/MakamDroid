@@ -2,6 +2,7 @@ package dataAndroid;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Arrays;
 
 import android.media.AudioFormat;
 import android.media.AudioManager;
@@ -11,10 +12,9 @@ import android.media.MediaRecorder;
 import utilities.AudioUtilities;
 
 public class Answer {
-	private final int bufferSize = AudioRecord.getMinBufferSize(44100, AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT);
 	private boolean isRunning;
 	private byte[] rawData;
-	private ByteArrayOutputStream out; 													// Stream for byte array output
+	private ByteArrayOutputStream out; 									// Stream for byte array output
 	private AudioRecord recorder;
 	private AudioTrack audioTrack;
 
@@ -22,6 +22,8 @@ public class Answer {
 		
 	}
 	public void startRecord(){
+		final int bufferSize = AudioRecord.getMinBufferSize(44100, AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT);
+
 		recorder = new AudioRecord(MediaRecorder.AudioSource.MIC, 44100, 
 				AudioFormat.CHANNEL_IN_MONO,
 				AudioFormat.ENCODING_PCM_16BIT,
@@ -78,6 +80,7 @@ public class Answer {
 		for (int i = 0; i < prcl.length; i++) {
 			answerResult[i] = AudioUtilities.findMedian(prcl[i]);
 		}
+		Arrays.sort(answerResult);
 		return answerResult;
 	}
 }

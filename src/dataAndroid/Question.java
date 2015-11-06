@@ -15,7 +15,7 @@ public class Question {
 	private int soundNumber;
 	private int noteContain;
 	private float[][] questionResult;
-	private final String TYPE;
+	public final String TYPE;
 	
 	/** 
 	 * Construct a Question Sound Pool
@@ -44,7 +44,10 @@ public class Question {
 						for (int j = 0; j < noteContain; j++) {
 							questionResult[pos][j] = Float.valueOf(nameSplit[j+2]);
 						}
-					}
+					} //else if (TYPE.equals("r")){
+						// rhythm analysis function
+					// questionResult object must be filled with rhythm results
+					//}
 					pos++;
 				} 				
 			}
@@ -60,13 +63,14 @@ public class Question {
 			e.printStackTrace();
 		}
 	}
-	public void play(int soundID){  // soundID is standard integer indexes. It's not RawID or any specific number
+	public int play(int soundID){  // soundID is standard integer indexes. It's not RawID or any specific number
+		int streamID = 0;
 		try {
-			int stream = sounds.play(soundID, 0.8f, 0.8f, 1, 0, 1f);
-			System.out.println(stream);
+			streamID = sounds.play(soundID, 0.8f, 0.8f, 1, 0, 1f);
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
-		} 
+		}
+		return streamID;
 	}
 	public void stop(int soundID){
 		try {

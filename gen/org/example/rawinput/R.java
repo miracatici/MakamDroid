@@ -75,11 +75,11 @@ public final class R {
         public static final int second=0x7f090002;
     }
     public static final class raw {
-        public static final int n_1_300=0x7f050000;
-        public static final int n_1_330=0x7f050001;
-        public static final int n_1_360=0x7f050002;
-        public static final int n_1_390=0x7f050003;
-        public static final int n_1_420=0x7f050004;
+        public static final int n_1_261=0x7f050000;
+        public static final int n_1_293=0x7f050001;
+        public static final int n_1_330=0x7f050002;
+        public static final int n_1_350=0x7f050003;
+        public static final int n_1_394=0x7f050004;
         public static final int n_2_300_330=0x7f050005;
         public static final int n_2_360_390=0x7f050006;
         public static final int n_2_420_450=0x7f050007;

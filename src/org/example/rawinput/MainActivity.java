@@ -25,7 +25,7 @@ public class MainActivity extends Activity {
 	final int FILE_CHOOSER=1;
 	private Question q1set;
 	private Answer answer1;
-	public static final int NN = 2;
+	public static final int NN = 1;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -100,9 +100,7 @@ public class MainActivity extends Activity {
 				switch(btnPlayQ.getText().toString()) {
 					case "Play Q":
 						btnPlayQ.setText("Stop Q");
-						setQuestionResult(q1set.getQuestionResult(position));
-						q1set.play(position);
-						streamID++;
+						streamID = q1set.play(position);
 						break;
 					case "Stop Q" :
 						btnPlayQ.setText("Play Q");
@@ -142,8 +140,9 @@ public class MainActivity extends Activity {
 		btnAnalyze.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				float[] res = answer1.analyze(NN);
-				setAnswerResult(res);
+				float[] resAns = answer1.analyze(NN);
+				float[] resQues = q1set.getQuestionResult(position);
+				compare(resQues,resAns);
 			}
 		});
 	}
@@ -191,5 +190,10 @@ public class MainActivity extends Activity {
 				ans3.setText(String.valueOf(results[2]));
 				break;
 		}
+	}
+	private void compare(float[] questionRes, float[] answerRes){
+		setQuestionResult(questionRes);
+		setAnswerResult(answerRes);
+		
 	}
 }
