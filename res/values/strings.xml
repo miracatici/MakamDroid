@@ -20,11 +20,17 @@
     <string name="fileSize">File Size</string>
     <string name="currentDir">Current Dir</string>
     <string name="selectedPlay">Selected Play</string>
-    <string name="btnSelQ">Select Q</string>
+    <string name="btnSelQ">Select</string>
     <string name="btnPlayQ">Play Q</string>
     <string name="btnRecA">Rec A</string>
     <string name="btnAnalyze">Analyze</string>
     <string name="btnNext">Next</string>
     <string name="btnPlayA">Play A</string>
-   
+    <string name="btnPrev">Prev</string>
+    <string-array name="quesList">
+        <item>1 Note</item>
+        <item>2 Note</item>
+        <item>3 Note</item>
+		<item>Rhythm</item>
+    </string-array>
 </resources>

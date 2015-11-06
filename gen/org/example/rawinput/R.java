@@ -8,6 +8,9 @@
 package org.example.rawinput;
 
 public final class R {
+    public static final class array {
+        public static final int quesList=0x7f080000;
+    }
     public static final class attr {
     }
     public static final class dimen {
@@ -47,22 +50,24 @@ public final class R {
         public static final int zip32=0x7f02000f;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a000f;
-        public static final int ans1=0x7f0a000a;
-        public static final int ans2=0x7f0a000b;
-        public static final int ans3=0x7f0a000c;
-        public static final int btnAnalyze=0x7f0a0005;
-        public static final int btnFolder=0x7f0a0006;
-        public static final int btnNext=0x7f0a0002;
-        public static final int btnPlayA=0x7f0a0004;
-        public static final int btnPlayQ=0x7f0a0001;
-        public static final int btnRecA=0x7f0a0003;
-        public static final int btnSelQ=0x7f0a0000;
-        public static final int img1=0x7f0a000e;
-        public static final int mySimpleXYPlot=0x7f0a000d;
-        public static final int res1=0x7f0a0007;
-        public static final int res2=0x7f0a0008;
-        public static final int res3=0x7f0a0009;
+        public static final int action_settings=0x7f0b0011;
+        public static final int ans1=0x7f0b000c;
+        public static final int ans2=0x7f0b000d;
+        public static final int ans3=0x7f0b000e;
+        public static final int btnAnalyze=0x7f0b0007;
+        public static final int btnFolder=0x7f0b0008;
+        public static final int btnNext=0x7f0b0003;
+        public static final int btnPlayA=0x7f0b0006;
+        public static final int btnPlayQ=0x7f0b0002;
+        public static final int btnPrev=0x7f0b0004;
+        public static final int btnRecA=0x7f0b0005;
+        public static final int btnSelQ=0x7f0b0001;
+        public static final int img1=0x7f0b0010;
+        public static final int mySimpleXYPlot=0x7f0b000f;
+        public static final int res1=0x7f0b0009;
+        public static final int res2=0x7f0b000a;
+        public static final int res3=0x7f0b000b;
+        public static final int spinner1=0x7f0b0000;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -70,9 +75,9 @@ public final class R {
         public static final int file_view=0x7f030002;
     }
     public static final class menu {
-        public static final int file_chooser=0x7f090000;
-        public static final int main=0x7f090001;
-        public static final int second=0x7f090002;
+        public static final int file_chooser=0x7f0a0000;
+        public static final int main=0x7f0a0001;
+        public static final int second=0x7f0a0002;
     }
     public static final class raw {
         public static final int n_1_261=0x7f050000;
@@ -109,6 +114,7 @@ public final class R {
         public static final int btnPlayA=0x7f070018;
         public static final int btnPlayQ=0x7f070014;
         public static final int btnPlayWav=0x7f070009;
+        public static final int btnPrev=0x7f070019;
         public static final int btnRecA=0x7f070015;
         public static final int btnSelQ=0x7f070013;
         public static final int btnSelect=0x7f070008;
@@ -148,11 +154,11 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f080000;
+        public static final int AppBaseTheme=0x7f090000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f080001;
+        public static final int AppTheme=0x7f090001;
     }
     public static final class xml {
         public static final int line_point_formatter_with_plf1=0x7f040000;

@@ -72,15 +72,23 @@ public class Answer {
 		audioTrack.release();
 	}
 	public float[] analyze(int noteNumber){
-		float[] answerResult = new float[noteNumber];
-		PitchDetection pd = new PitchDetection(AudioUtilities.byteToFloatArray(rawData),44100);
-		float[] pr = pd.getPitchResult();
-		float[][] prc = pd.chunkPitchTrack(pr);
-		float[][] prcl = pd.pickLongChunks(prc, noteNumber);
-		for (int i = 0; i < prcl.length; i++) {
-			answerResult[i] = AudioUtilities.findMedian(prcl[i]);
+		float[] answerResult = null;
+		switch(noteNumber){
+			case 0:
+				answerResult = new float[10];
+				//rhythm analysis methods comes here
+				break;
+			default :
+				answerResult = new float[noteNumber];
+				PitchDetection pd = new PitchDetection(AudioUtilities.byteToFloatArray(rawData),44100);
+				float[] pr = pd.getPitchResult();
+				float[][] prc = pd.chunkPitchTrack(pr);
+				float[][] prcl = pd.pickLongChunks(prc, noteNumber);
+				for (int i = 0; i < prcl.length; i++) {
+					answerResult[i] = AudioUtilities.findMedian(prcl[i]);
+				}
+				Arrays.sort(answerResult);
 		}
-		Arrays.sort(answerResult);
 		return answerResult;
 	}
 }

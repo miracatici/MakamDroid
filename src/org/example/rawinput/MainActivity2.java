@@ -201,7 +201,7 @@ public class MainActivity2 extends Activity {
 					case "Play Q":
 						btnPlayQ.setText("Stop Q");
 						// Question Play Function
-						q1set.play(position);
+						q1set.play();
 						break;
 					case "Stop Q" :
 						btnPlayQ.setText("Play Q");
