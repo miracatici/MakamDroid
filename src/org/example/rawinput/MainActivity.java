@@ -1,5 +1,6 @@
 package org.example.rawinput;
 
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,17 +11,20 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import dataAndroid.Answer;
 import dataAndroid.Question;
+import utilities.AudioUtilities;
 
 public class MainActivity extends Activity {
 	private Question questionSet;
 	private Answer answer;
 	private TextView res1, res2, res3, ans1, ans2, ans3;
 	private Button btnSelQ, btnPlayQ,btnNext, btnRecA, btnPlayA, btnAnalyze,btnPrev;
+	private ImageView resImg1, resImg2, resImg3;
 	private Spinner questionList;
 	private String QT = "n";
 	private int streamID=0; 
@@ -68,6 +72,10 @@ public class MainActivity extends Activity {
 		btnPrev = (Button) findViewById(R.id.btnPrev);
 		btnPrev.setEnabled(false);
 		questionList = (Spinner) findViewById(R.id.spinner1);
+		resImg1 = (ImageView) findViewById(R.id.resultImg1);
+		resImg2 = (ImageView) findViewById(R.id.resultImg2);
+		resImg3 = (ImageView) findViewById(R.id.resultImg3);
+
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
 		        R.array.quesList, android.R.layout.simple_spinner_item);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -204,7 +212,14 @@ public class MainActivity extends Activity {
 	
 	public void noteCompare(Question q, Answer a) {
 		float[] resQues = q.getQuestionResult();
-		float[] resAns = a.analyze(NN); 
+		float[] resAns = a.analyze(NN);
+		int[] answers = new int[NN];
+		for (int i = 0; i < answers.length; i++) {
+			int qCent = AudioUtilities.hertzToCent(resQues[i]);
+			int aCent = AudioUtilities.hertzToCent(resAns[i]);
+			answers[i] = compareCent(qCent, aCent);
+		}
+		setResultImage(answers);
 		setQuestionResult(resQues);
 		setAnswerResult(resAns);
 	}
@@ -241,6 +256,52 @@ public class MainActivity extends Activity {
 				ans2.setText(String.valueOf(Math.round(results[1])));
 				ans3.setText(String.valueOf(Math.round(results[2])));
 				break;
+		}
+	}
+	private void setResultImage(int... results){
+		switch(results.length){
+			case 1:
+				changeImage(resImg1,results[0]);
+				break;
+			case 2:
+				changeImage(resImg1,results[0]);
+				changeImage(resImg2,results[1]);
+				break;	
+			case 3:
+				changeImage(resImg1,results[0]);
+				changeImage(resImg2,results[1]);
+				changeImage(resImg3,results[2]);
+				break;
+		}		
+	}
+	private void changeImage(ImageView img, int res){   // 0 is non available ** 1 is true ** 2 is false
+		switch(res){
+			case 0:
+				img.setImageResource(android.R.drawable.presence_invisible);
+				break;
+			case 1:
+				img.setImageResource(android.R.drawable.presence_online);
+				break;
+			case 2:
+				img.setImageResource(android.R.drawable.presence_offline);
+		}
+	}
+	
+	private int compareCent(float testCent, float recCent){
+		if(Math.abs(testCent - recCent)<25){
+			System.out.println(Math.abs(testCent - recCent));
+			return 1;
+		} else if (Math.abs(testCent - (recCent-1200))<25){
+			System.out.println(Math.abs(testCent - (recCent-1200)));
+			return 1;
+		}else if (Math.abs(testCent - (recCent+1200))<25 ){
+			System.out.println(Math.abs(testCent - (recCent+1200)));
+			return 1;
+		} else {
+			System.out.println(testCent - recCent);
+			System.out.println(testCent - (recCent-1200));
+			System.out.println(testCent - (recCent+1200));
+			return 2;
 		}
 	}
 }

@@ -68,8 +68,8 @@ public final class R {
         public static final int resultImg1=0x7f0b000f;
         public static final int resultImg2=0x7f0b0010;
         public static final int resultImg3=0x7f0b0011;
-        public static final int spinner1=0x7f0b0000;
-        public static final int textView1=0x7f0b0001;
+        public static final int spinner1=0x7f0b0001;
+        public static final int textView1=0x7f0b0000;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
