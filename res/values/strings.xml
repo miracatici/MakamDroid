@@ -28,9 +28,11 @@
     <string name="btnPlayA">Play A</string>
     <string name="btnPrev">Prev</string>
     <string-array name="quesList">
+        <item>Test</item>
         <item>1 Note</item>
         <item>2 Note</item>
         <item>3 Note</item>
+        <item>4 Note</item>
 		<item>Rhythm</item>
     </string-array>
 </resources>

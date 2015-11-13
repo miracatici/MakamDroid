@@ -48,25 +48,19 @@ import utilities.AudioUtilities;
 
 
 public class PitchDetection {
-	private Yin yin;
-	private String name;
 	private int bufferSize;
-	private float sampleRate;
-	private float[] floatData,pitchResult;
+	private float[] pitchResult;
 	ArrayList<Integer> chunkPosition = new ArrayList<Integer>();
 
 	
 	public PitchDetection(float[] audioFloatData,float samplerate) {
-		name = null;
-		sampleRate = samplerate;
-		bufferSize = (int) Math.round(sampleRate*0.04);
-		floatData = audioFloatData;
-		estimate();
+		estimate(audioFloatData,samplerate);
 	}
 	
-	public void estimate(){
+	private void estimate(float[] floatData, float sampleRate){
+		bufferSize = (int) Math.round(sampleRate*0.04);
 		float[][] chunked = AudioUtilities.chunkArray(floatData,bufferSize);
-		yin = new Yin(sampleRate,bufferSize,0.1);
+		Yin yin = new Yin(sampleRate,bufferSize,0.1);
 		pitchResult = new float[chunked.length];
 		for (int i=0; i<pitchResult.length;++i){
 			float r = yin.getPitch(chunked[i]).getPitch();
@@ -84,9 +78,6 @@ public class PitchDetection {
 	}
 	public int getBufferSize() {
 		return bufferSize;
-	}
-	public String getName() {
-		return name;
 	}
 	public int[] getChunkPosition() {
 		int[] chunkPos = new int[chunkPosition.size()];
@@ -139,5 +130,16 @@ public class PitchDetection {
 			longChunks[i] = chunkedArray[i];
 		}
 		return longChunks;
+	}
+	public float[] getChunkResults(int noteNumber){
+		float[][] tempResult = pickLongChunks(chunkPitchTrack(getPitchResult()), noteNumber);
+		float[] answerResult = new float[noteNumber];
+
+		for (int i = 0; i < tempResult.length; i++) {
+			answerResult[i] = AudioUtilities.findMedian(tempResult[i]);
+		}
+		Arrays.sort(answerResult);
+
+		return answerResult;
 	}
 }

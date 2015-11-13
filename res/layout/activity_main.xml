@@ -10,28 +10,43 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="org.example.rawinput.MainActivity" >
-	
-    <Spinner
-        android:id="@+id/spinner1"
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose question type and press Select"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#FFFFFF" />
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content" >
+
+        <Spinner
+            android:id="@+id/spinner1"
+            android:layout_width="88dp"
+            android:layout_height="46dp"
+            android:layout_weight="1.66" />
+
+        <Button
+            android:id="@+id/btnSelQ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.51"
+            android:text="@string/btnSelQ" />
+
+    </LinearLayout>
     
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
         <Button
-            android:id="@+id/btnSelQ"
-            android:layout_width="74dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.14"
-            android:text="@string/btnSelQ" />
-
-        <Button
             android:id="@+id/btnPlayQ"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/btnPlayQ" />
+            android:text="@string/btnPlayQ"/>
 
         <Button
             android:id="@+id/btnNext"
@@ -43,7 +58,7 @@
             android:id="@+id/btnPrev"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/btnPrev" />
+            android:text="@string/btnPrev"/>
     </LinearLayout>
 
     <LinearLayout
@@ -68,12 +83,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/btnAnalyze" />
-
-        <ImageButton
-            android:id="@+id/btnFolder"
-            android:layout_width="wrap_content"
-            android:layout_height="45dp"
-            android:src="@drawable/folder" />
     </LinearLayout>
 
     <LinearLayout
@@ -85,50 +94,77 @@
             android:id="@+id/res1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
+            android:text="Result 1"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
             android:id="@+id/res2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
+            android:text="Result 2"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
             android:id="@+id/res3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
+            android:text="Result 3"
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.84" >
+        android:layout_weight="0.30" >
 
         <TextView
             android:id="@+id/ans1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
+            android:text="Answer 1"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
             android:id="@+id/ans2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
+            android:text="Answer 2"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
             android:id="@+id/ans3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
+            android:text="Answer 3"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:layout_weight="0.09" >
+
+        <ImageView
+            android:id="@+id/resultImg1"
+            android:layout_width="wrap_content"
+            android:layout_height="59dp"
+            android:layout_weight="0.88"
+            android:src="@android:drawable/presence_online" />
+
+        <ImageView
+            android:id="@+id/resultImg2"
+            android:layout_width="wrap_content"
+            android:layout_height="59dp"
+            android:layout_weight="0.88"
+            android:src="@android:drawable/presence_online" />
+
+        <ImageView
+            android:id="@+id/resultImg3"
+            android:layout_width="wrap_content"
+            android:layout_height="59dp"
+            android:layout_weight="0.88"
+            android:src="@android:drawable/presence_online" />
     </LinearLayout>
 
 </LinearLayout>

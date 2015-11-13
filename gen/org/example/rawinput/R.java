@@ -50,29 +50,30 @@ public final class R {
         public static final int zip32=0x7f02000f;
     }
     public static final class id {
-        public static final int action_settings=0x7f0b0011;
+        public static final int action_settings=0x7f0b0013;
         public static final int ans1=0x7f0b000c;
         public static final int ans2=0x7f0b000d;
         public static final int ans3=0x7f0b000e;
-        public static final int btnAnalyze=0x7f0b0007;
-        public static final int btnFolder=0x7f0b0008;
-        public static final int btnNext=0x7f0b0003;
-        public static final int btnPlayA=0x7f0b0006;
-        public static final int btnPlayQ=0x7f0b0002;
-        public static final int btnPrev=0x7f0b0004;
-        public static final int btnRecA=0x7f0b0005;
-        public static final int btnSelQ=0x7f0b0001;
-        public static final int img1=0x7f0b0010;
-        public static final int mySimpleXYPlot=0x7f0b000f;
+        public static final int btnAnalyze=0x7f0b0008;
+        public static final int btnNext=0x7f0b0004;
+        public static final int btnPlayA=0x7f0b0007;
+        public static final int btnPlayQ=0x7f0b0003;
+        public static final int btnPrev=0x7f0b0005;
+        public static final int btnRecA=0x7f0b0006;
+        public static final int btnSelQ=0x7f0b0002;
+        public static final int img1=0x7f0b0012;
         public static final int res1=0x7f0b0009;
         public static final int res2=0x7f0b000a;
         public static final int res3=0x7f0b000b;
+        public static final int resultImg1=0x7f0b000f;
+        public static final int resultImg2=0x7f0b0010;
+        public static final int resultImg3=0x7f0b0011;
         public static final int spinner1=0x7f0b0000;
+        public static final int textView1=0x7f0b0001;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
-        public static final int activity_second=0x7f030001;
-        public static final int file_view=0x7f030002;
+        public static final int file_view=0x7f030001;
     }
     public static final class menu {
         public static final int file_chooser=0x7f0a0000;

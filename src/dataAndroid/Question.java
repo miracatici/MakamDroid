@@ -53,16 +53,15 @@ public class Question {
 							}
 							break;
 						case "r":
-							// rhythm analysis function
+							// functions of rhythm question results reading
 							// questionResult object must be filled with rhythm results
-							// questionResult[pos] = analysis of rhythm 
 							break;
 					}
 					pos++;
 				} 				
 			}
 			if(pos>0){
-				soundNumber = pos;				
+				soundNumber = pos;
 				Toast.makeText(context, soundNumber + " files loaded to pool", Toast.LENGTH_SHORT).show();
 			} else {
 				Toast.makeText(context, "No files loaded", Toast.LENGTH_SHORT).show();
@@ -78,7 +77,7 @@ public class Question {
 		try {
 			streamID = sounds.play(position, 0.9f, 0.9f, 1, 0, 1f);
 		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
+			Toast.makeText(context, "Sound file couldn't played", Toast.LENGTH_SHORT).show();
 		}
 		return streamID;
 	}
@@ -86,7 +85,7 @@ public class Question {
 		try {
 			sounds.stop(soundID);
 		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
+			Toast.makeText(context, "Sound file couldn't stopped", Toast.LENGTH_SHORT).show();
 		} 
 	}
 	public int getSoundNumber() {
@@ -114,6 +113,5 @@ public class Question {
 		} else {
 			position--;			
 		}
-	}
-	
+	}	
 }

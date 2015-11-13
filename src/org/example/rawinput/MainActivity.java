@@ -1,9 +1,6 @@
 package org.example.rawinput;
 
-import java.io.File;
-
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,25 +10,21 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import dataAndroid.Answer;
 import dataAndroid.Question;
-import fileChooser.FileChooser;
 
 public class MainActivity extends Activity {
-	private Question q1set;
-	private Answer answer1;
+	private Question questionSet;
+	private Answer answer;
 	private TextView res1, res2, res3, ans1, ans2, ans3;
 	private Button btnSelQ, btnPlayQ,btnNext, btnRecA, btnPlayA, btnAnalyze,btnPrev;
-	private ImageButton btnFolder;
 	private Spinner questionList;
 	private String QT = "n";
 	private int streamID=0; 
 	private int NN = 1;
-	private final int FILE_CHOOSER=1;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -70,7 +63,6 @@ public class MainActivity extends Activity {
 		btnAnalyze.setEnabled(false);
 		btnNext = (Button) findViewById(R.id.btnNext);
 		btnNext.setEnabled(false);
-		btnFolder = (ImageButton) findViewById(R.id.btnFolder);
 		btnPlayA = (Button) findViewById(R.id.btnPlayA);
 		btnPlayA.setEnabled(false);
 		btnPrev = (Button) findViewById(R.id.btnPrev);
@@ -84,6 +76,10 @@ public class MainActivity extends Activity {
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 				switch((String) questionList.getSelectedItem()){
+					case "Test" :
+						NN = 1;
+						QT = "n";
+						break;
 					case "1 Note":
 						NN = 1;
 						QT = "n";
@@ -95,7 +91,11 @@ public class MainActivity extends Activity {
 					case "3 Note":
 						NN = 3;
 						QT = "n";
-						break;	
+						break;
+					case "4 Note" :
+						NN = 4;
+						QT = "n";
+						break;
 					case "Rhythm":
 						NN = 0;
 						QT = "r";
@@ -108,13 +108,7 @@ public class MainActivity extends Activity {
 				
 			}
 		});
-		answer1 = new Answer();
-		btnFolder.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				browseFiles(v);
-			}
-		});
+		answer = new Answer();
 		btnSelQ.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -122,8 +116,8 @@ public class MainActivity extends Activity {
 				btnPlayQ.setEnabled(true);
 				btnNext.setEnabled(true);
 				btnPrev.setEnabled(true);
-				q1set = new Question(MainActivity.this,QT,NN);
-				answer1 = new Answer();
+				questionSet = new Question(MainActivity.this,QT,NN);
+				answer = new Answer();
 			}
 		});
 		btnPlayQ.setOnClickListener(new OnClickListener() {
@@ -132,11 +126,11 @@ public class MainActivity extends Activity {
 				switch(btnPlayQ.getText().toString()) {
 					case "Play Q":
 						btnPlayQ.setText("Stop Q");
-						streamID = q1set.play();
+						streamID = questionSet.play();
 						break;
 					case "Stop Q" :
 						btnPlayQ.setText("Play Q");
-						q1set.stop(streamID);
+						questionSet.stop(streamID);
 						break;
 				}
 			}
@@ -144,8 +138,8 @@ public class MainActivity extends Activity {
 		btnNext.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				q1set.stop(streamID);
-				q1set.next();
+				questionSet.stop(streamID);
+				questionSet.next();
 				btnPlayQ.setText("Play Q");
 				
 			}
@@ -153,8 +147,8 @@ public class MainActivity extends Activity {
 		btnPrev.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				q1set.stop(streamID);
-				q1set.previous();
+				questionSet.stop(streamID);
+				questionSet.previous();
 				btnPlayQ.setText("Play Q");
 			}
 		});
@@ -164,11 +158,11 @@ public class MainActivity extends Activity {
 				switch(btnRecA.getText().toString()) {
 					case "Rec A":
 						btnRecA.setText("Stop A");;
-						answer1.startRecord();
+						answer.startRecord();
 						break;
 					case "Stop A" :
 						btnRecA.setText("Rec A");
-						answer1.stopRecord();
+						answer.stopRecord();
 						btnAnalyze.setEnabled(true);
 						btnPlayA.setEnabled(true);
 						break;						
@@ -181,11 +175,11 @@ public class MainActivity extends Activity {
 				switch(btnPlayA.getText().toString()) {
 				case "Play A":
 					btnPlayA.setText("Stop A");
-					answer1.startPlay();
+					answer.startPlay();
 					break;
 				case "Stop A" :
 					btnPlayA.setText("Play A");
-					answer1.stopPlay();
+					answer.stopPlay();
 					break;
 				}						
 			}
@@ -193,19 +187,18 @@ public class MainActivity extends Activity {
 		btnAnalyze.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				compare(q1set,answer1);
+				Toast.makeText(MainActivity.this, " Analysis is started", Toast.LENGTH_SHORT).show();
+				compare(questionSet,answer);
+				Toast.makeText(MainActivity.this, " Analysis is finished", Toast.LENGTH_SHORT).show();
 			}
 		});
 	}
 	
 	private void compare(Question q, Answer a){
-		switch(NN){
-			case 1:
-				noteCompare(q,a);
-				break;
-			default :
-				rhythmCompare();
-				break;
+		if(NN>0){
+			noteCompare(q,a);
+		} else {
+			rhythmCompare(q,a);
 		}
 	}
 	
@@ -215,52 +208,39 @@ public class MainActivity extends Activity {
 		setQuestionResult(resQues);
 		setAnswerResult(resAns);
 	}
-	public void rhythmCompare(){
+	public void rhythmCompare(Question q, Answer a){
 		// Rhythm compare methods comes here
 	}
 	private void setQuestionResult(float... results){
 		switch(results.length){
 			case 1:
-				res1.setText(String.valueOf(results[0]));
+				res1.setText(String.valueOf(Math.round(results[0])));
 				break;
 			case 2:
-				res1.setText(String.valueOf(results[0]));
-				res2.setText(String.valueOf(results[1]));
+				res1.setText(String.valueOf(Math.round(results[0])));
+				res2.setText(String.valueOf(Math.round(results[1])));
 				break;	
 			case 3:
-				res1.setText(String.valueOf(results[0]));
-				res2.setText(String.valueOf(results[1]));
-				res3.setText(String.valueOf(results[2]));
+				res1.setText(String.valueOf(Math.round(results[0])));
+				res2.setText(String.valueOf(Math.round(results[1])));
+				res3.setText(String.valueOf(Math.round(results[2])));
 				break;
 		}
 	}
 	private void setAnswerResult(float... results){
 		switch(results.length){
 			case 1:
-				ans1.setText(String.valueOf(results[0]));
+				ans1.setText(String.valueOf(Math.round(results[0])));
 				break;
 			case 2:
-				ans1.setText(String.valueOf(results[0]));
-				ans2.setText(String.valueOf(results[1]));
+				ans1.setText(String.valueOf(Math.round(results[0])));
+				ans2.setText(String.valueOf(Math.round(results[1])));
 				break;	
 			case 3:
-				ans1.setText(String.valueOf(results[0]));
-				ans2.setText(String.valueOf(results[1]));
-				ans3.setText(String.valueOf(results[2]));
+				ans1.setText(String.valueOf(Math.round(results[0])));
+				ans2.setText(String.valueOf(Math.round(results[1])));
+				ans3.setText(String.valueOf(Math.round(results[2])));
 				break;
 		}
-	}
-	public void browseFiles(View view) {
-		Intent intent = new Intent(this, FileChooser.class);
-		startActivityForResult(intent, FILE_CHOOSER);
-	}
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-	    if ((requestCode == FILE_CHOOSER) && (resultCode == RESULT_OK)) {
-	        String fileSelected = data.getStringExtra("fileSelected");
-	        // dosyayla naapmak istersen
-	        System.out.println(fileSelected);
-	        Toast.makeText(this, "file selected "+fileSelected, Toast.LENGTH_SHORT).show();
-	        FileChooser.currentDir = new File(fileSelected);
-	    }                   
 	}
 }

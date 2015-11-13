@@ -2,7 +2,6 @@ package dataAndroid;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.Arrays;
 
 import android.media.AudioFormat;
 import android.media.AudioManager;
@@ -79,15 +78,8 @@ public class Answer {
 				//rhythm analysis methods comes here
 				break;
 			default :
-				answerResult = new float[noteNumber];
 				PitchDetection pd = new PitchDetection(AudioUtilities.byteToFloatArray(rawData),44100);
-				float[] pr = pd.getPitchResult();
-				float[][] prc = pd.chunkPitchTrack(pr);
-				float[][] prcl = pd.pickLongChunks(prc, noteNumber);
-				for (int i = 0; i < prcl.length; i++) {
-					answerResult[i] = AudioUtilities.findMedian(prcl[i]);
-				}
-				Arrays.sort(answerResult);
+				answerResult = pd.getChunkResults(noteNumber);
 		}
 		return answerResult;
 	}
