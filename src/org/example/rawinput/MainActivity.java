@@ -140,6 +140,8 @@ public class MainActivity extends Activity {
 					setDifferenceResult(0,0,0,0);
 					btnSelQ.setEnabled(false);
 					btnPlayQ.setEnabled(true);
+					btnPlayA.setEnabled(false);
+					btnAnalyze.setEnabled(false);
 					btnNext.setEnabled(true);
 					btnPrev.setEnabled(true);
 				} catch (Exception e) {
@@ -355,11 +357,11 @@ public class MainActivity extends Activity {
 		}
 	}
 	private int[] compareCent(float testCent, float recCent){
-		if(Math.abs(testCent - recCent)<25.5f){
+		if(Math.abs(testCent - recCent)<50.5f){
 			return new int[]{1,Math.round((Math.abs(testCent - recCent)))};
-		} else if (Math.abs(testCent - (recCent-1200))<25.5f){
+		} else if (Math.abs(testCent - (recCent-1200))<50.5f){
 			return new int[]{1,Math.round((Math.abs(testCent - (recCent-1200))))};
-		}else if (Math.abs(testCent - (recCent+1200))<25.5f ){
+		} else if (Math.abs(testCent - (recCent+1200))<50.5f){
 			return new int[]{1,Math.round((Math.abs(testCent - (recCent+1200))))};
 		} else {
 			return new int[]{2,Math.round((Math.abs(testCent - recCent)))};
