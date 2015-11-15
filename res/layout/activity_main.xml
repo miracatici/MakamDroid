@@ -51,17 +51,17 @@
             tools:ignore="ButtonStyle" />
 
         <Button
-            android:id="@+id/btnNext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/btnNext"
-            tools:ignore="ButtonStyle" />
-
-        <Button
             android:id="@+id/btnPrev"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/btnPrev"
+            tools:ignore="ButtonStyle" />
+
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btnNext"
             tools:ignore="ButtonStyle" />
 
         <TextView

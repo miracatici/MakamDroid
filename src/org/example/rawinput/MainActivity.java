@@ -181,6 +181,10 @@ public class MainActivity extends Activity {
 				questionSet.stop(streamID);
 				questionSet.previous();
 				btnPlayQ.setText("Play Q");
+				setQuestionResult(0,0,0,0);
+				setAnswerResult(0,0,0,0);
+				setResultImage(0,0,0,0);
+				setDifferenceResult(0,0,0,0);
 			}
 		});
 		btnRecA.setOnClickListener(new OnClickListener() {

@@ -56,10 +56,10 @@ public final class R {
         public static final int ans3=0x7f0b0013;
         public static final int ans4=0x7f0b0014;
         public static final int btnAnalyze=0x7f0b0009;
-        public static final int btnNext=0x7f0b0004;
+        public static final int btnNext=0x7f0b0005;
         public static final int btnPlayA=0x7f0b0008;
         public static final int btnPlayQ=0x7f0b0003;
-        public static final int btnPrev=0x7f0b0005;
+        public static final int btnPrev=0x7f0b0004;
         public static final int btnRecA=0x7f0b0007;
         public static final int btnSelQ=0x7f0b0002;
         public static final int dif1=0x7f0b0016;
