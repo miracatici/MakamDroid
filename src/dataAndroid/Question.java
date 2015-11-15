@@ -2,19 +2,21 @@ package dataAndroid;
 
 import java.lang.reflect.Field;
 
+import org.example.rawinput.MainActivity;
 import org.example.rawinput.R;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.widget.Toast;
 
 public class Question {
-	private Context context;
-	private SoundPool sounds;
-	private int soundNumber,noteContain,position=1;
-	private float[][] questionResult;
-	public final String TYPE;
+	protected Context context;
+	protected SoundPool sounds;
+	protected int soundNumber,noteContain,position=1;
+	protected float[][] questionResult;
+	protected final String TYPE;
 	
 	/** 
 	 * Construct a Question Sound Pool
@@ -25,22 +27,27 @@ public class Question {
 	 * @return Question object that is based on SoundPool features
 	 */
 	@SuppressWarnings("deprecation")
-	public Question(Context con,String questionType, int noteNumber){ 
-		
-		Field[] fields = R.raw.class.getFields();
+	public Question(Context con,String questionType, final int noteNumber){ 
+		MainActivity.status.post(new Runnable(){
+			@Override
+			public void run() {
+				MainActivity.status.setTextColor(Color.YELLOW);
+				MainActivity.status.setText("Wait !!!");
+			}
+		});	
 		context = con;
+		final Field[] fields = R.raw.class.getFields();
 		soundNumber = fields.length; TYPE = questionType; noteContain = noteNumber;
 		sounds = new SoundPool(1,AudioManager.STREAM_MUSIC,0);
-
-		switch(TYPE){
-			case "n":
-				questionResult = new float[soundNumber][noteContain];
-				break;
-			case "r":
-				questionResult = new float[soundNumber][];
-		}
-		int pos = 0;
 		try {
+			switch(TYPE){
+				case "n":
+					questionResult = new float[soundNumber][noteContain];
+					break;
+				case "r":
+					questionResult = new float[soundNumber][];
+			}
+			int pos = 0;			
 			for (int i = 0; i < fields.length ; i++) { 
 				String name = context.getResources().getResourceEntryName(fields[i].getInt(fields[i]));
 				String[] nameSplit = name.split("_");
@@ -62,15 +69,27 @@ public class Question {
 			}
 			if(pos>0){
 				soundNumber = pos;
-				Toast.makeText(context, soundNumber + " files loaded to pool", Toast.LENGTH_SHORT).show();
 			} else {
-				Toast.makeText(context, "No files loaded", Toast.LENGTH_SHORT).show();
+				soundNumber = 0;
 			}
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		}
+			MainActivity.status.post(new Runnable(){
+				@Override
+				public void run() {
+					Toast.makeText(context, soundNumber + " files are loaded", Toast.LENGTH_SHORT).show();
+					MainActivity.status.setTextColor(Color.GREEN);
+					MainActivity.status.setText("Ready");
+				}
+			});
+		} catch (IllegalAccessException | IllegalArgumentException e) {
+			MainActivity.status.post(new Runnable(){
+				@Override
+				public void run() {
+					Toast.makeText(context, "Error occured Ques, no file loaded", Toast.LENGTH_SHORT).show();
+					MainActivity.status.setTextColor(Color.RED);
+					MainActivity.status.setText("Error !!!");
+				}
+			});
+		} 			
 	}
 	public int play(){  // soundID is standard integer indexes. It's not RawID or any specific number
 		int streamID = 0;
@@ -113,5 +132,5 @@ public class Question {
 		} else {
 			position--;			
 		}
-	}	
+	}
 }

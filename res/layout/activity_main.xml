@@ -1,5 +1,4 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,12 +9,14 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="org.example.rawinput.MainActivity" >
-
+    
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Choose question type and press Select"
+        android:layout_gravity="center"
+        android:layout_weight="0.05"
+        android:text="@string/header"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#FFFFFF" />
 
@@ -46,19 +47,31 @@
             android:id="@+id/btnPlayQ"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/btnPlayQ"/>
+            android:text="@string/btnPlayQ"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/btnNext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/btnNext" />
+            android:text="@string/btnNext"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/btnPrev"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/btnPrev"/>
+            android:text="@string/btnPrev"
+            tools:ignore="ButtonStyle" />
+
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@android:dimen/notification_large_icon_height"
+            android:text="Status"
+            android:textColor="#FFFFFF" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -70,20 +83,43 @@
             android:id="@+id/btnRecA"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/btnRecA" />
+            android:text="@string/btnRecA"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/btnPlayA"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/btnPlayA" />
+            android:text="@string/btnPlayA"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/btnAnalyze"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/btnAnalyze" />
+            android:text="@string/btnAnalyze"
+            tools:ignore="ButtonStyle" />
+
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.03"
+        android:text="@string/analysis"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.03"
+        android:text="@string/question"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#FFFFFF" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -95,7 +131,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.10"
-            android:text="Result 1"
+            android:text="@string/res1"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -103,7 +139,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.10"            
-            android:text="Result 2"
+            android:text="@string/res2"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -111,21 +147,39 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.10"
-            android:text="Result 3"
+            android:text="@string/res3"
             android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/res4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.10"
+            android:text="@string/res4"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.03"
+        android:text="@string/answer"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#FFFFFF" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.30" >
+        android:layout_weight="0.10" >
 
         <TextView
             android:id="@+id/ans1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.10"
-            android:text="Answer 1"
+            android:text="@string/ans1"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -133,7 +187,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.10"
-            android:text="Answer 2"
+            android:text="@string/ans2"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -141,9 +195,63 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.10"
-            android:text="Answer 3"
+            android:text="@string/ans3"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
+        <TextView
+            android:id="@+id/ans4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.10"
+            android:text="@string/ans4"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.03"
+        android:text="@string/difference_in_cent"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#FFFFFF" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.26" >
+
+        <TextView
+            android:id="@+id/dif1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.10"
+            android:text="@string/dif_1"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/dif2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.10"
+            android:text="@string/dif_2"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/dif3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.10"
+            android:text="@string/dif_3"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/dif4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.10"
+            android:text="@string/dif_4"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
     </LinearLayout>
 
     <LinearLayout
@@ -171,6 +279,14 @@
             android:layout_height="59dp"
             android:layout_weight="0.88"
             android:src="@android:drawable/presence_invisible" />
+
+        <ImageView
+            android:id="@+id/resultImg4"
+            android:layout_width="wrap_content"
+            android:layout_height="59dp"
+            android:layout_weight="0.88"
+            android:src="@android:drawable/presence_invisible" />
+
     </LinearLayout>
 
 </LinearLayout>

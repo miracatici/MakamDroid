@@ -28,11 +28,27 @@
     <string name="btnPlayA">Play A</string>
     <string name="btnPrev">Prev</string>
     <string-array name="quesList">
-        <item>Test</item>
         <item>1 Note</item>
         <item>2 Note</item>
         <item>3 Note</item>
         <item>4 Note</item>
 		<item>Rhythm</item>
     </string-array>
+		<string name="difference_in_cent">Difference in Cent</string>
+		<string name="header">Choose question type and press Select</string>
+		<string name="analysis">Analysis result in Hertz</string>
+		<string name="res1">Result 1</string>
+		<string name="res2">Result 2</string>
+		<string name="res3">Result 3</string>
+		<string name="res4">Result 4</string>
+		<string name="answer">Answer</string>
+		<string name="ans1">Answer 1</string>
+		<string name="ans2">Answer 2</string>
+		<string name="ans3">Answer 3</string>
+		<string name="ans4">Answer 4</string>
+		<string name="dif_1">Dif 1</string>
+		<string name="dif_2">Dif 2</string>
+		<string name="dif_3">Dif 3</string>
+		<string name="dif_4">Dif 4</string>
+		<string name="question">Question</string>
 </resources>
