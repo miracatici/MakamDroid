@@ -1,10 +1,12 @@
-package org.example.rawinput;
+package org.example.trainear;
 
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -24,7 +26,7 @@ public class MainActivity extends Activity {
 	private Answer answer;
 	private TextView res1, res2, res3,res4, ans1, ans2, ans3, ans4,dif1,dif2,dif3,dif4;
 	public static TextView status;
-	private Button btnSelQ, btnPlayQ,btnNext, btnRecA, btnPlayA, btnAnalyze,btnPrev;
+	private Button btnSelQ, btnPlayQ,btnNext, btnRecA, btnPlayA,btnPrev;
 	private ImageView resImg1, resImg2, resImg3, resImg4;
 	private Spinner questionList;
 	private String QT = "n";
@@ -71,8 +73,6 @@ public class MainActivity extends Activity {
 		btnPlayQ = (Button) findViewById(R.id.btnPlayQ);
 		btnPlayQ.setEnabled(false);
 		btnRecA = (Button) findViewById(R.id.btnRecA);
-		btnAnalyze = (Button) findViewById(R.id.btnAnalyze);
-		btnAnalyze.setEnabled(false);
 		btnNext = (Button) findViewById(R.id.btnNext); 
 		btnNext.setEnabled(false);
 		btnPlayA = (Button) findViewById(R.id.btnPlayA);
@@ -141,7 +141,6 @@ public class MainActivity extends Activity {
 					btnSelQ.setEnabled(false);
 					btnPlayQ.setEnabled(true);
 					btnPlayA.setEnabled(false);
-					btnAnalyze.setEnabled(false);
 					btnNext.setEnabled(true);
 					btnPrev.setEnabled(true);
 				} catch (Exception e) {
@@ -189,23 +188,26 @@ public class MainActivity extends Activity {
 				setDifferenceResult(0,0,0,0);
 			}
 		});
-		btnRecA.setOnClickListener(new OnClickListener() {
+		btnRecA.setOnTouchListener(new View.OnTouchListener() {
+	        @SuppressLint("ClickableViewAccessibility")
 			@Override
-			public void onClick(View v) {
-				switch(btnRecA.getText().toString()) {
-					case "Rec A":
-						btnRecA.setText("Stop A");;
-						answer.startRecord();
-						break;
-					case "Stop A" :
-						btnRecA.setText("Rec A");
-						answer.stopRecord();
-						btnAnalyze.setEnabled(true);
+	        public boolean onTouch(View v, MotionEvent event) {
+	            switch(event.getAction()) {
+	                case MotionEvent.ACTION_DOWN:
+	                	answer.startRecord();
+	                	btnRecA.setPressed(true);
+						btnPlayA.setEnabled(false);
+	                    return true;
+	                case MotionEvent.ACTION_UP:
+	                	btnRecA.setPressed(false);
+	                	answer.stopRecord();
 						btnPlayA.setEnabled(true);
-						break;						
-				}
-			}
-		});
+	                	compare(questionSet,answer);
+	                    return true;
+	            }
+	            return false;
+	        }
+	    });
 		btnPlayA.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -219,12 +221,6 @@ public class MainActivity extends Activity {
 					answer.stopPlay();
 					break;
 				}						
-			}
-		});
-		btnAnalyze.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				compare(questionSet,answer);
 			}
 		});
 	}

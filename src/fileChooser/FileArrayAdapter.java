@@ -2,7 +2,7 @@ package fileChooser;
 import java.util.List;
 import java.util.Locale;
 
-import org.example.rawinput.R;
+import org.example.trainear.R;
 
 import android.content.Context;
 import android.view.LayoutInflater;

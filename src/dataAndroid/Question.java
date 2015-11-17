@@ -2,8 +2,8 @@ package dataAndroid;
 
 import java.lang.reflect.Field;
 
-import org.example.rawinput.MainActivity;
-import org.example.rawinput.R;
+import org.example.trainear.R;
+import org.example.trainear.MainActivity;
 
 import android.content.Context;
 import android.graphics.Color;

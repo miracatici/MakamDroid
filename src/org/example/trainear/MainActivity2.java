@@ -1,4 +1,4 @@
-package org.example.rawinput;
+package org.example.trainear;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -88,7 +88,6 @@ public class MainActivity2 extends Activity {
 		btnSelQ = (Button) findViewById(R.id.btnSelQ);
 		btnPlayQ = (Button) findViewById(R.id.btnPlayQ);
 		btnRecA = (Button) findViewById(R.id.btnRecA);
-		btnAnalyze = (Button) findViewById(R.id.btnAnalyze);
 		btnNext = (Button) findViewById(R.id.btnNext);
 
 //		nextTab = (ImageButton) findViewById(R.id.nextTab);

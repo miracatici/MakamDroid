@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.example.rawinput.R;
+import org.example.trainear.R;
 
 import android.app.Activity;
 import android.app.ListActivity;
