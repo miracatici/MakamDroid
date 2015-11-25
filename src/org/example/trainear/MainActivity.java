@@ -202,7 +202,11 @@ public class MainActivity extends Activity {
 	                	btnRecA.setPressed(false);
 	                	answer.stopRecord();
 						btnPlayA.setEnabled(true);
-	                	compare(questionSet,answer);
+						try {
+							compare(questionSet,answer);							
+						} catch (Exception e){
+							Toast.makeText(MainActivity.this, "Press long and record, then release", Toast.LENGTH_LONG).show();
+						}
 	                    return true;
 	            }
 	            return false;
