@@ -13,7 +13,10 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +27,10 @@ import utilities.AudioUtilities;
 public class MainActivity extends Activity {
 	private Question questionSet;
 	private Answer answer;
-	private TextView res1, res2, res3,res4, ans1, ans2, ans3, ans4,dif1,dif2,dif3,dif4;
+//	private TextView res1, res2, res3,res4, ans1, ans2, ans3, ans4; 
+	private TextView dif1,dif2,dif3,dif4;
+	private RadioButton quizA1,quizA2,quizA3,quizA4;
+	private RadioGroup quizAnswer;
 	public static TextView status;
 	private Button btnSelQ, btnPlayQ,btnNext, btnRecA, btnPlayA,btnPrev;
 	private ImageView resImg1, resImg2, resImg3, resImg4;
@@ -56,14 +62,19 @@ public class MainActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	private void setProperties(){
-		res1 = (TextView) findViewById(R.id.res1);
-		res2 = (TextView) findViewById(R.id.res2);
-		res3 = (TextView) findViewById(R.id.res3);
-		res4 = (TextView) findViewById(R.id.res4);
-		ans1 = (TextView) findViewById(R.id.ans1);
-		ans2 = (TextView) findViewById(R.id.ans2);
-		ans3 = (TextView) findViewById(R.id.ans3);
-		ans4 = (TextView) findViewById(R.id.ans4);
+//		res1 = (TextView) findViewById(R.id.res1);
+//		res2 = (TextView) findViewById(R.id.res2);
+//		res3 = (TextView) findViewById(R.id.res3);
+//		res4 = (TextView) findViewById(R.id.res4);
+//		ans1 = (TextView) findViewById(R.id.ans1);
+//		ans2 = (TextView) findViewById(R.id.ans2);
+//		ans3 = (TextView) findViewById(R.id.ans3);
+//		ans4 = (TextView) findViewById(R.id.ans4);
+		quizA1 = (RadioButton) findViewById(R.id.quizA1);
+		quizA2 = (RadioButton) findViewById(R.id.quizA2);
+		quizA3 = (RadioButton) findViewById(R.id.quizA3);
+		quizA4 = (RadioButton) findViewById(R.id.quizA4);
+		quizAnswer = (RadioGroup) findViewById(R.id.quizAnswer);
 		dif1 = (TextView) findViewById(R.id.dif1);
 		dif2 = (TextView) findViewById(R.id.dif2);
 		dif3 = (TextView) findViewById(R.id.dif3);
@@ -85,7 +96,23 @@ public class MainActivity extends Activity {
 		resImg2 = (ImageView) findViewById(R.id.resultImg2);
 		resImg3 = (ImageView) findViewById(R.id.resultImg3);
 		resImg4 = (ImageView) findViewById(R.id.resultImg4);
-
+		
+		quizAnswer.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(RadioGroup group, int checkedId) {
+				System.out.println("Listener works");
+				if (group.getCheckedRadioButtonId() == R.id.quizA1){
+					Toast.makeText(MainActivity.this, quizA1.getText(), Toast.LENGTH_SHORT).show();
+				} else if (group.getCheckedRadioButtonId()  == R.id.quizA2){		
+					Toast.makeText(MainActivity.this, quizA2.getText(), Toast.LENGTH_SHORT).show();
+				}else if (group.getCheckedRadioButtonId()  == R.id.quizA3){		
+					Toast.makeText(MainActivity.this, quizA3.getText(), Toast.LENGTH_SHORT).show();
+				}else if (group.getCheckedRadioButtonId()  == R.id.quizA4){		
+					Toast.makeText(MainActivity.this, quizA4.getText(), Toast.LENGTH_SHORT).show();
+				}
+			}
+		});
+		
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
 		        R.array.quesList, android.R.layout.simple_spinner_item);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -257,48 +284,48 @@ public class MainActivity extends Activity {
 		// Rhythm compare methods comes here
 	}
 	private void setQuestionResult(float... results){
-		switch(results.length){
-			case 1:
-				res1.setText(String.valueOf(Math.round(results[0])));
-				break;
-			case 2:
-				res1.setText(String.valueOf(Math.round(results[0])));
-				res2.setText(String.valueOf(Math.round(results[1])));
-				break;	
-			case 3:
-				res1.setText(String.valueOf(Math.round(results[0])));
-				res2.setText(String.valueOf(Math.round(results[1])));
-				res3.setText(String.valueOf(Math.round(results[2])));
-				break;
-			case 4:
-				res1.setText(String.valueOf(Math.round(results[0])));
-				res2.setText(String.valueOf(Math.round(results[1])));
-				res3.setText(String.valueOf(Math.round(results[2])));
-				res4.setText(String.valueOf(Math.round(results[3])));
-				break;	
-		}
+//		switch(results.length){
+//			case 1:
+//				res1.setText(String.valueOf(Math.round(results[0])));
+//				break;
+//			case 2:
+//				res1.setText(String.valueOf(Math.round(results[0])));
+//				res2.setText(String.valueOf(Math.round(results[1])));
+//				break;	
+//			case 3:
+//				res1.setText(String.valueOf(Math.round(results[0])));
+//				res2.setText(String.valueOf(Math.round(results[1])));
+//				res3.setText(String.valueOf(Math.round(results[2])));
+//				break;
+//			case 4:
+//				res1.setText(String.valueOf(Math.round(results[0])));
+//				res2.setText(String.valueOf(Math.round(results[1])));
+//				res3.setText(String.valueOf(Math.round(results[2])));
+//				res4.setText(String.valueOf(Math.round(results[3])));
+//				break;	
+//		}
 	}
 	private void setAnswerResult(float... results){
-		switch(results.length){
-			case 1:
-				ans1.setText(String.valueOf(Math.round(results[0])));
-				break;
-			case 2:
-				ans1.setText(String.valueOf(Math.round(results[0])));
-				ans2.setText(String.valueOf(Math.round(results[1])));
-				break;	
-			case 3:
-				ans1.setText(String.valueOf(Math.round(results[0])));
-				ans2.setText(String.valueOf(Math.round(results[1])));
-				ans3.setText(String.valueOf(Math.round(results[2])));
-				break;
-			case 4:
-				ans1.setText(String.valueOf(Math.round(results[0])));
-				ans2.setText(String.valueOf(Math.round(results[1])));
-				ans3.setText(String.valueOf(Math.round(results[2])));
-				ans4.setText(String.valueOf(Math.round(results[3])));
-				break;	
-		}
+//		switch(results.length){
+//			case 1:
+//				ans1.setText(String.valueOf(Math.round(results[0])));
+//				break;
+//			case 2:
+//				ans1.setText(String.valueOf(Math.round(results[0])));
+//				ans2.setText(String.valueOf(Math.round(results[1])));
+//				break;	
+//			case 3:
+//				ans1.setText(String.valueOf(Math.round(results[0])));
+//				ans2.setText(String.valueOf(Math.round(results[1])));
+//				ans3.setText(String.valueOf(Math.round(results[2])));
+//				break;
+//			case 4:
+//				ans1.setText(String.valueOf(Math.round(results[0])));
+//				ans2.setText(String.valueOf(Math.round(results[1])));
+//				ans3.setText(String.valueOf(Math.round(results[2])));
+//				ans4.setText(String.valueOf(Math.round(results[3])));
+//				break;	
+//		}
 	}
 	private void setDifferenceResult(int... results){
 		switch(results.length){
