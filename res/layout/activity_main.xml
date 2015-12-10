@@ -105,7 +105,6 @@
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.30"
         android:text="@string/difference_in_cent"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#FFFFFF" />
@@ -113,7 +112,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.21" >
+        android:layout_weight="0.05" >
 
         <TextView
             android:id="@+id/dif1"
@@ -148,56 +147,49 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </LinearLayout>
 
-	<RadioGroup
-	    android:id="@+id/quizAnswer"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-        android:checkedButton="@+id/quizA1" >
+    <RadioGroup
+        android:id="@+id/quizAnswer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="0.02"
+        android:orientation="horizontal" >
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="141dp"
-            android:layout_gravity="center"
-            android:orientation="vertical" >
+        <RadioButton
+            android:id="@+id/quizA1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:text="Buyuk 2&apos;li" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-                
-                <RadioButton
-                    android:id="@+id/quizA1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="RadioButton" />
+        <RadioButton
+            android:id="@+id/quizA2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Küçük 2&apos;li" />
 
-                <RadioButton
-                    android:id="@+id/quizA2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="RadioButton" />
+    </RadioGroup>
 
-            </LinearLayout>
+    <RadioGroup
+        android:id="@+id/quizAnswer2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="0.11"
+        android:orientation="horizontal" >
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+        <RadioButton
+            android:id="@+id/quizA3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Majör 3&apos;lü" />
 
-                <RadioButton
-                    android:id="@+id/quizA3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="RadioButton" />
+        <RadioButton
+            android:id="@+id/quizA4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Minör 3&apos;lü" />
 
-                <RadioButton
-                    android:id="@+id/quizA4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="RadioButton" />
-            </LinearLayout>
-        </LinearLayout>
     </RadioGroup>
 
     <LinearLayout

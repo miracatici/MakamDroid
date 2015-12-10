@@ -50,11 +50,11 @@ public final class R {
         public static final int zip32=0x7f02000f;
     }
     public static final class id {
-        public static final int action_settings=0x7f0b0024;
-        public static final int ans1=0x7f0b001e;
-        public static final int ans2=0x7f0b001f;
-        public static final int ans3=0x7f0b0020;
-        public static final int ans4=0x7f0b0021;
+        public static final int action_settings=0x7f0b0025;
+        public static final int ans1=0x7f0b001f;
+        public static final int ans2=0x7f0b0020;
+        public static final int ans3=0x7f0b0021;
+        public static final int ans4=0x7f0b0022;
         public static final int btnNext=0x7f0b0005;
         public static final int btnPlayA=0x7f0b0009;
         public static final int btnPlayQ=0x7f0b0003;
@@ -65,27 +65,28 @@ public final class R {
         public static final int dif2=0x7f0b000c;
         public static final int dif3=0x7f0b000d;
         public static final int dif4=0x7f0b000e;
-        public static final int img1=0x7f0b0023;
+        public static final int img1=0x7f0b0024;
         public static final int quizA1=0x7f0b0010;
         public static final int quizA2=0x7f0b0011;
-        public static final int quizA3=0x7f0b0012;
-        public static final int quizA4=0x7f0b0013;
+        public static final int quizA3=0x7f0b0013;
+        public static final int quizA4=0x7f0b0014;
         public static final int quizAnswer=0x7f0b000f;
-        public static final int res1=0x7f0b0019;
-        public static final int res2=0x7f0b001a;
-        public static final int res3=0x7f0b001b;
-        public static final int res4=0x7f0b001c;
-        public static final int resultImg1=0x7f0b0014;
-        public static final int resultImg2=0x7f0b0015;
-        public static final int resultImg3=0x7f0b0016;
-        public static final int resultImg4=0x7f0b0017;
+        public static final int quizAnswer2=0x7f0b0012;
+        public static final int res1=0x7f0b001a;
+        public static final int res2=0x7f0b001b;
+        public static final int res3=0x7f0b001c;
+        public static final int res4=0x7f0b001d;
+        public static final int resultImg1=0x7f0b0015;
+        public static final int resultImg2=0x7f0b0016;
+        public static final int resultImg3=0x7f0b0017;
+        public static final int resultImg4=0x7f0b0018;
         public static final int spinner1=0x7f0b0001;
         public static final int status=0x7f0b0006;
         public static final int textView1=0x7f0b0000;
         public static final int textView2=0x7f0b000a;
-        public static final int textView3=0x7f0b0022;
-        public static final int textView4=0x7f0b0018;
-        public static final int textView5=0x7f0b001d;
+        public static final int textView3=0x7f0b0023;
+        public static final int textView4=0x7f0b0019;
+        public static final int textView5=0x7f0b001e;
         public static final int textView6=0x7f0b0007;
     }
     public static final class layout {
