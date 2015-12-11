@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="org.example.trainear.MainActivity" >
-    
+
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
@@ -27,18 +27,17 @@
             android:id="@+id/spinner1"
             android:layout_width="88dp"
             android:layout_height="46dp"
-            android:layout_weight="1.66"
+            android:layout_weight="1"
             android:background="#FFFFFF" />
 
         <Button
             android:id="@+id/btnSelQ"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.51"
+            android:layout_weight="1"
             android:text="@string/btnSelQ" />
-
     </LinearLayout>
-    
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
@@ -68,10 +67,9 @@
             android:id="@+id/status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@android:dimen/notification_large_icon_height"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:text="Status"
             android:textColor="#FFFFFF" />
-
     </LinearLayout>
 
     <LinearLayout
@@ -147,49 +145,60 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </LinearLayout>
 
-    <RadioGroup
-        android:id="@+id/quizAnswer"
+    <TextView
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:text="Theoretical Answer"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#FFFFFF" />
+
+    <RadioGroup
+        android:id="@+id/quizAnswer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="0.02"
+        android:background="#FFFFFF"
         android:orientation="horizontal" >
 
         <RadioButton
             android:id="@+id/quizA1"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:text="Buyuk 2&apos;li" />
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:text="Büyük 2&apos;li" />
 
         <RadioButton
             android:id="@+id/quizA2"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
             android:text="Küçük 2&apos;li" />
-
     </RadioGroup>
 
     <RadioGroup
         android:id="@+id/quizAnswer2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_weight="0.11"
+        android:background="#FFFFFF"
         android:orientation="horizontal" >
 
         <RadioButton
             android:id="@+id/quizA3"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="Majör 3&apos;lü" />
 
         <RadioButton
             android:id="@+id/quizA4"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="Minör 3&apos;lü" />
-
     </RadioGroup>
 
     <LinearLayout
@@ -223,7 +232,6 @@
             android:layout_height="59dp"
             android:layout_weight="0.88"
             android:src="@android:drawable/presence_invisible" />
-
     </LinearLayout>
 
 </LinearLayout>

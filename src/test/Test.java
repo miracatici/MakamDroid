@@ -1,4 +1,4 @@
-package dataAndroid;
+package test;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,7 +14,7 @@ import android.media.AudioManager;
 import android.media.SoundPool;
 import android.widget.Toast;
 
-public class Question {
+public class Test {
 	private AssetManager assets ;
 	private Context context;
 	private SoundPool sounds;
@@ -32,7 +32,7 @@ public class Question {
 	 * @return Question object that is based on SoundPool features
 	 */
 	@SuppressWarnings("deprecation")
-	public Question(Context con,String questionType, final int noteNumber) { 
+	public Test(Context con,String questionType, final int noteNumber) { 
 		MainActivity.status.post(new Runnable(){
 			@Override
 			public void run() {
@@ -102,9 +102,6 @@ public class Question {
 	}
 	public float[] getQuestionResult(){
 		return resultData.get(files[position-1]);
-	}
-	public String getQuestionAnswer(){
-		return "answer";
 	}
 	public String getQuestionType(){
 		return TYPE;

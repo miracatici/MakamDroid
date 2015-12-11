@@ -139,6 +139,8 @@ public class MainActivity extends Activity {
 					case "1 Note":
 						NN = 1;
 						QT = "n";
+						quizAnswer.setClickable(false);
+						quizAnswer2.setClickable(false);						
 						break;
 					case "2 Note":
 						NN = 2;
@@ -180,6 +182,8 @@ public class MainActivity extends Activity {
 					setAnswerResult(0,0,0,0);
 					setResultImage(0,0,0,0);
 					setDifferenceResult(0,0,0,0);
+					setOption();
+					clearChekcs();
 					btnSelQ.setEnabled(false);
 					btnPlayQ.setEnabled(true);
 					btnPlayA.setEnabled(false);
@@ -215,7 +219,9 @@ public class MainActivity extends Activity {
 				setQuestionResult(0,0,0,0);
 				setAnswerResult(0,0,0,0);
 				setResultImage(0,0,0,0);
-				setDifferenceResult(0,0,0,0);	
+				setDifferenceResult(0,0,0,0);
+				setOption();
+				clearChekcs();
 			}
 		});
 		btnPrev.setOnClickListener(new OnClickListener() {
@@ -228,6 +234,8 @@ public class MainActivity extends Activity {
 				setAnswerResult(0,0,0,0);
 				setResultImage(0,0,0,0);
 				setDifferenceResult(0,0,0,0);
+				setOption();
+				clearChekcs();
 			}
 		});
 		btnRecA.setOnTouchListener(new View.OnTouchListener() {
@@ -247,6 +255,7 @@ public class MainActivity extends Activity {
 						try {
 							compare(questionSet,answer);							
 						} catch (Exception e){
+							e.printStackTrace();
 							Toast.makeText(MainActivity.this, "Press long and record, then release", Toast.LENGTH_LONG).show();
 						}
 	                    return true;
@@ -359,6 +368,32 @@ public class MainActivity extends Activity {
 			case 2:
 				img.setImageResource(android.R.drawable.presence_busy);
 		}
+	}
+	private void setOption(){
+		switch(NN){
+			case 0:
+				
+				break;
+			case 1:
+				quizA1.setClickable(false);
+				quizA2.setClickable(false);
+				quizA3.setClickable(false);
+				quizA4.setClickable(false);
+				break;
+			case 2:
+				break;
+			case 3:
+				;
+			case 4:
+				;
+		}
+	}
+	private void clearChekcs(){
+		quizAnswer.setOnCheckedChangeListener(null);
+		quizAnswer2.setOnCheckedChangeListener(null);
+		quizAnswer.clearCheck(); quizAnswer2.clearCheck(); 
+		quizAnswer.setOnCheckedChangeListener(listener1);
+		quizAnswer2.setOnCheckedChangeListener(listener2);
 	}
 	private int[] compareCent(float testCent, float recCent){
 		if(Math.abs(testCent - recCent)<50.5f){
