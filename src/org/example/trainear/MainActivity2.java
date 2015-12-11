@@ -73,7 +73,7 @@ public class MainActivity2 extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	private void setProperties(){
-		fields = R.raw.class.getFields();
+		fields = null;
 		recorder = new AudioRecord(MediaRecorder.AudioSource.MIC, 44100, 
 				AudioFormat.CHANNEL_IN_MONO,
 				AudioFormat.ENCODING_PCM_16BIT,
