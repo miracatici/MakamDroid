@@ -145,13 +145,35 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Theoretical Answer"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#FFFFFF" />
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Theory Answer"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#FFFFFF" />
+
+        <Switch
+            android:id="@+id/switch1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="@dimen/title_font_size" />
+
+        <TextView
+            android:id="@+id/theoAns"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/legend_text_font_size"
+            android:text="Answer"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#FFFFFF" />
+
+    </LinearLayout>
 
     <RadioGroup
         android:id="@+id/quizAnswer"
@@ -167,7 +189,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:text="Büyük 2&apos;li" />
+            android:text="Major Second" />
 
         <RadioButton
             android:id="@+id/quizA2"
@@ -175,7 +197,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:text="Küçük 2&apos;li" />
+            android:text="Minor Second" />
     </RadioGroup>
 
     <RadioGroup
@@ -191,14 +213,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Majör 3&apos;lü" />
+            android:text="Major Third" />
 
         <RadioButton
             android:id="@+id/quizA4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Minör 3&apos;lü" />
+            android:text="Minor Third" />
     </RadioGroup>
 
     <LinearLayout

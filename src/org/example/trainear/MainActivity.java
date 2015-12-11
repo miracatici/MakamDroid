@@ -3,6 +3,7 @@ package org.example.trainear;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,11 +14,13 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 import dataAndroid.Answer;
@@ -27,9 +30,10 @@ import utilities.AudioUtilities;
 public class MainActivity extends Activity {
 	private Question questionSet;
 	private Answer answer;
-	private TextView dif1,dif2,dif3,dif4;
+	private TextView dif1,dif2,dif3,dif4, theoAns;
 	private RadioButton quizA1,quizA2,quizA3,quizA4;
 	private RadioGroup quizAnswer, quizAnswer2;
+	private Switch switch1;
 	public static TextView status;
 	private Button btnSelQ, btnPlayQ,btnNext, btnRecA, btnPlayA,btnPrev;
 	private ImageView resImg1, resImg2, resImg3, resImg4;
@@ -62,6 +66,7 @@ public class MainActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	private void setProperties(){
+		switch1 = (Switch) findViewById(R.id.switch1);
 		quizA1 = (RadioButton) findViewById(R.id.quizA1);
 		quizA2 = (RadioButton) findViewById(R.id.quizA2);
 		quizA3 = (RadioButton) findViewById(R.id.quizA3);
@@ -73,6 +78,7 @@ public class MainActivity extends Activity {
 		dif3 = (TextView) findViewById(R.id.dif3);
 		dif4 = (TextView) findViewById(R.id.dif4);
 		status = (TextView) findViewById(R.id.status);
+		theoAns = (TextView) findViewById(R.id.theoAns);
 		btnSelQ = (Button) findViewById(R.id.btnSelQ);
 		btnPlayQ = (Button) findViewById(R.id.btnPlayQ);
 		btnPlayQ.setEnabled(false);
@@ -89,19 +95,34 @@ public class MainActivity extends Activity {
 		resImg2 = (ImageView) findViewById(R.id.resultImg2);
 		resImg3 = (ImageView) findViewById(R.id.resultImg3);
 		resImg4 = (ImageView) findViewById(R.id.resultImg4);
+		switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				if(!isChecked){
+					clearChekcs();
+					theoAns.setTextColor(Color.WHITE);
+					theoAns.setText("Answer");
+				}
+				quizA1.setClickable(isChecked);	
+				quizA2.setClickable(isChecked);	
+				quizA3.setClickable(isChecked);	
+				quizA4.setClickable(isChecked);		
+			}
+		});
+		switch1.setClickable(false);
 		listener1 = new OnCheckedChangeListener() {
 	        @Override
 	        public void onCheckedChanged(RadioGroup group, int checkedId) {
-	            if (checkedId != -1) {
+            	if (checkedId != -1) {
 	                quizAnswer2.setOnCheckedChangeListener(null); // remove the listener before clearing so we don't throw that stackoverflow exception(like Vladimir Volodin pointed out)
 	                quizAnswer2.clearCheck(); // clear the second RadioGroup!
 	                quizAnswer2.setOnCheckedChangeListener(listener2); //reset the listener
 	                switch (checkedId) {
 						case R.id.quizA1 :
-							Toast.makeText(MainActivity.this, quizA1.getText(), Toast.LENGTH_SHORT).show();
+							theoryCompare((String)quizA1.getText());
 							break;
 						case R.id.quizA2 :
-							Toast.makeText(MainActivity.this, quizA2.getText(), Toast.LENGTH_SHORT).show();
+							theoryCompare((String)quizA2.getText());
 							break;	
 	                }		
 	            }
@@ -110,24 +131,27 @@ public class MainActivity extends Activity {
 	    listener2 = new OnCheckedChangeListener() {
 	        @Override
 	        public void onCheckedChanged(RadioGroup group, int checkedId) {
-	            if (checkedId != -1) {
-	                quizAnswer.setOnCheckedChangeListener(null);
-	                quizAnswer.clearCheck();
-	                quizAnswer.setOnCheckedChangeListener(listener1);
-	                switch (checkedId) {			
+            	if (checkedId != -1) {
+	                quizAnswer.setOnCheckedChangeListener(null); // remove the listener before clearing so we don't throw that stackoverflow exception(like Vladimir Volodin pointed out)
+	                quizAnswer.clearCheck(); // clear the second RadioGroup!
+	                quizAnswer.setOnCheckedChangeListener(listener1); //reset the listener
+	                switch (checkedId) {
 						case R.id.quizA3 :
-							Toast.makeText(MainActivity.this, quizA3.getText(), Toast.LENGTH_SHORT).show();
-							break;				
+							theoryCompare((String)quizA3.getText());
+							break;
 						case R.id.quizA4 :
-							Toast.makeText(MainActivity.this, quizA4.getText(), Toast.LENGTH_SHORT).show();
-							break;				
-	                } 
-	            }
+							theoryCompare((String)quizA4.getText());
+							break;	
+	                }		
+	            }   
 	        }
 	    };
 		quizAnswer.setOnCheckedChangeListener(listener1);
 		quizAnswer2.setOnCheckedChangeListener(listener2);
-		
+		quizA1.setClickable(false);	
+		quizA2.setClickable(false);	
+		quizA3.setClickable(false);	
+		quizA4.setClickable(false);	
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
 		        R.array.quesList, android.R.layout.simple_spinner_item);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -138,9 +162,7 @@ public class MainActivity extends Activity {
 				switch((String) questionList.getSelectedItem()){
 					case "1 Note":
 						NN = 1;
-						QT = "n";
-						quizAnswer.setClickable(false);
-						quizAnswer2.setClickable(false);						
+						QT = "n";				
 						break;
 					case "2 Note":
 						NN = 2;
@@ -178,12 +200,12 @@ public class MainActivity extends Activity {
 							answer = new Answer();						
 						}	
 					}).start();
-					setQuestionResult(0,0,0,0);
-					setAnswerResult(0,0,0,0);
 					setResultImage(0,0,0,0);
 					setDifferenceResult(0,0,0,0);
 					setOption();
 					clearChekcs();
+					switch1.setClickable(true);
+					switch1.setChecked(false);
 					btnSelQ.setEnabled(false);
 					btnPlayQ.setEnabled(true);
 					btnPlayA.setEnabled(false);
@@ -216,12 +238,12 @@ public class MainActivity extends Activity {
 				questionSet.stop(streamID);
 				questionSet.next();
 				btnPlayQ.setText("Play Q");
-				setQuestionResult(0,0,0,0);
-				setAnswerResult(0,0,0,0);
 				setResultImage(0,0,0,0);
 				setDifferenceResult(0,0,0,0);
 				setOption();
 				clearChekcs();
+				theoAns.setTextColor(Color.WHITE);
+				theoAns.setText("Answer");
 			}
 		});
 		btnPrev.setOnClickListener(new OnClickListener() {
@@ -230,12 +252,12 @@ public class MainActivity extends Activity {
 				questionSet.stop(streamID);
 				questionSet.previous();
 				btnPlayQ.setText("Play Q");
-				setQuestionResult(0,0,0,0);
-				setAnswerResult(0,0,0,0);
 				setResultImage(0,0,0,0);
 				setDifferenceResult(0,0,0,0);
 				setOption();
 				clearChekcs();
+				theoAns.setTextColor(Color.WHITE);
+				theoAns.setText("Answer");
 			}
 		});
 		btnRecA.setOnTouchListener(new View.OnTouchListener() {
@@ -301,17 +323,19 @@ public class MainActivity extends Activity {
 		}
 		setDifferenceResult(difference);
 		setResultImage(answers);
-		setQuestionResult(resQues);
-		setAnswerResult(resAns);
+	}
+	private void theoryCompare(String a){
+		String resQues = questionSet.getTheoryAnswer();
+		if(a.equals(resQues)){
+			theoAns.setTextColor(Color.GREEN);
+			theoAns.setText("Correct");
+		} else {
+			theoAns.setTextColor(Color.RED);
+			theoAns.setText("Wrong");
+		}
 	}
 	public void rhythmCompare(Question q, Answer a){
 		// Rhythm compare methods comes here
-	}
-	private void setQuestionResult(float... results){
-
-	}
-	private void setAnswerResult(float... results){
-
 	}
 	private void setDifferenceResult(int... results){
 		switch(results.length){
@@ -370,24 +394,9 @@ public class MainActivity extends Activity {
 		}
 	}
 	private void setOption(){
-		switch(NN){
-			case 0:
-				
-				break;
-			case 1:
-				quizA1.setClickable(false);
-				quizA2.setClickable(false);
-				quizA3.setClickable(false);
-				quizA4.setClickable(false);
-				break;
-			case 2:
-				break;
-			case 3:
-				;
-			case 4:
-				;
-		}
+		
 	}
+	
 	private void clearChekcs(){
 		quizAnswer.setOnCheckedChangeListener(null);
 		quizAnswer2.setOnCheckedChangeListener(null);
