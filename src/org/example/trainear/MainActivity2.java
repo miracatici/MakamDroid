@@ -6,6 +6,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.Field;
 
+import org.example.trainear.data.Question;
+import org.example.trainear.menu.FileChooser;
+import org.example.trainear.utilities.AudioUtilities;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.media.AudioFormat;
@@ -28,9 +32,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import be.tarsos.dsp.pitch.Yin;
-import dataAndroid.Question;
-import fileChooser.FileChooser;
-import utilities.AudioUtilities;
 
 public class MainActivity2 extends Activity {
 	private TextView txtPitch; 

@@ -1,8 +1,10 @@
-package test;
+package org.example.trainear.data;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectInput;
 import java.io.ObjectInputStream;
+import java.io.StreamCorruptedException;
 import java.util.HashMap;
 
 import org.example.trainear.MainActivity;
@@ -14,14 +16,12 @@ import android.media.AudioManager;
 import android.media.SoundPool;
 import android.widget.Toast;
 
-public class Test {
-	private AssetManager assets ;
+public class Question {
 	private Context context;
 	private SoundPool sounds;
-	private int soundNumber,noteContain,position=1;
-	private final String TYPE, FOLDER;
+	private int soundNumber,position=1;
 	private String[] files;
-	private HashMap<String, float[]> resultData;
+	private HashMap<String, ClipData> clipDatas;
 	
 	/** 
 	 * Construct a Question Sound Pool
@@ -32,7 +32,7 @@ public class Test {
 	 * @return Question object that is based on SoundPool features
 	 */
 	@SuppressWarnings("deprecation")
-	public Test(Context con,String questionType, final int noteNumber) { 
+	public Question(Context con,String questionType, final int noteNumber) { 
 		MainActivity.status.post(new Runnable(){
 			@Override
 			public void run() {
@@ -40,21 +40,14 @@ public class Test {
 				MainActivity.status.setText("Wait !!!");
 			}
 		});	
-		context = con; TYPE = questionType; noteContain = noteNumber;
-		FOLDER = "audio/" + TYPE + "/" + String.valueOf(noteContain);
-		assets = context.getAssets();
-		try {
-			resultData = deserialize(assets.open("data/"+TYPE+"_" + String.valueOf(noteContain)+".ser"));
-			files = assets.list(FOLDER);
-			for (int i = 0; i < files.length; i++) {
-				System.out.println(files[i]);
-			}
-			soundNumber = files.length;
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
 		sounds = new SoundPool(1,AudioManager.STREAM_MUSIC,0);
+		context = con; 
+		String FOLDER = "audio/" + questionType + "/" + String.valueOf(noteNumber);
+		AssetManager assets = context.getAssets();
 		try {
+			clipDatas =  deserialize(assets.open(("data/"+questionType+"_" + String.valueOf(noteNumber)+".ser"),AssetManager.ACCESS_BUFFER));
+			files = assets.list(FOLDER);
+			soundNumber = files.length;
 			for (int i = 0; i < files.length; i++) {
 				sounds.load(assets.openFd(FOLDER+"/"+files[i]), 1);
 			}
@@ -66,8 +59,8 @@ public class Test {
 					MainActivity.status.setText("Ready " + String.valueOf(position)+ " / " + String.valueOf(soundNumber));
 				}
 			});
-		} catch ( IllegalArgumentException | IOException e) {
-			e.printStackTrace();
+		} catch (IOException | ClassNotFoundException e1) {
+			e1.printStackTrace();
 			MainActivity.status.post(new Runnable(){
 				@Override
 				public void run() {
@@ -76,7 +69,7 @@ public class Test {
 					MainActivity.status.setText("Error !!!");
 				}
 			});
-		} 			
+		}			
 	}
 	public int play(){  // soundID is standard integer indexes. It's not RawID or any specific number
 		int streamID = 0;
@@ -97,14 +90,14 @@ public class Test {
 	public int getSoundNumber() {
 		return soundNumber;
 	}
-	public int getNoteNumber() {
-		return noteContain;
-	}
 	public float[] getQuestionResult(){
-		return resultData.get(files[position-1]);
+		return clipDatas.get(files[position-1]).getFreqAnswer();
 	}
-	public String getQuestionType(){
-		return TYPE;
+	public String getTheoryAnswer(){
+		return clipDatas.get(files[position-1]).getTheoryAnswer();
+	}
+	public String[] getOption(){
+		return clipDatas.get(files[position-1]).getOptionList();
 	}
 	public void next(){
 		if(position == getSoundNumber()){
@@ -131,18 +124,13 @@ public class Test {
 		});
 	}
 	@SuppressWarnings("unchecked")
-	public HashMap<String, float[]> deserialize(InputStream path){
-        ObjectInputStream in;
-        HashMap<String, float[]> newData = null;
-		try {	        
-	        in = new ObjectInputStream(path);
-	        newData = (HashMap<String, float[]> ) in.readObject();
-	        in.close();
-	        path.close();
-		}
-		catch(Exception ex){
-			Toast.makeText(context, "Data file cannot be read", Toast.LENGTH_SHORT).show();
-		}
-		return newData;
+	public HashMap<String, ClipData> deserialize(InputStream is) throws StreamCorruptedException, IOException, ClassNotFoundException{
+		ObjectInput oi = null;
+		HashMap<String, ClipData> data  = null;
+		oi = new ObjectInputStream(is);
+		data =  (HashMap<String, ClipData>) oi.readObject();
+        oi.close();
+        is.close();
+        return data;
 	}
 }

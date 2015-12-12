@@ -1,4 +1,4 @@
-package dataAndroid;
+package org.example.trainear.test;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,12 +14,14 @@ import android.media.AudioManager;
 import android.media.SoundPool;
 import android.widget.Toast;
 
-public class Question {
+public class Test {
+	private AssetManager assets ;
 	private Context context;
 	private SoundPool sounds;
-	private int soundNumber,position=1;
+	private int soundNumber,noteContain,position=1;
+	private final String TYPE, FOLDER;
 	private String[] files;
-	private HashMap<String, ClipData> clipDatas;
+	private HashMap<String, float[]> resultData;
 	
 	/** 
 	 * Construct a Question Sound Pool
@@ -30,7 +32,7 @@ public class Question {
 	 * @return Question object that is based on SoundPool features
 	 */
 	@SuppressWarnings("deprecation")
-	public Question(Context con,String questionType, final int noteNumber) { 
+	public Test(Context con,String questionType, final int noteNumber) { 
 		MainActivity.status.post(new Runnable(){
 			@Override
 			public void run() {
@@ -38,14 +40,21 @@ public class Question {
 				MainActivity.status.setText("Wait !!!");
 			}
 		});	
-		sounds = new SoundPool(1,AudioManager.STREAM_MUSIC,0);
-		context = con; int noteContain = noteNumber;
-		String FOLDER = "audio/" + questionType + "/" + String.valueOf(noteContain);
-		AssetManager assets = context.getAssets();
+		context = con; TYPE = questionType; noteContain = noteNumber;
+		FOLDER = "audio/" + TYPE + "/" + String.valueOf(noteContain);
+		assets = context.getAssets();
 		try {
-			clipDatas =  deserialize(assets.open("data/"+questionType+"_" + String.valueOf(noteContain)+".ser"));
+			resultData = deserialize(assets.open("data/"+TYPE+"_" + String.valueOf(noteContain)+".ser"));
 			files = assets.list(FOLDER);
+			for (int i = 0; i < files.length; i++) {
+				System.out.println(files[i]);
+			}
 			soundNumber = files.length;
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		sounds = new SoundPool(1,AudioManager.STREAM_MUSIC,0);
+		try {
 			for (int i = 0; i < files.length; i++) {
 				sounds.load(assets.openFd(FOLDER+"/"+files[i]), 1);
 			}
@@ -57,8 +66,8 @@ public class Question {
 					MainActivity.status.setText("Ready " + String.valueOf(position)+ " / " + String.valueOf(soundNumber));
 				}
 			});
-		} catch (IOException e1) {
-			e1.printStackTrace();
+		} catch ( IllegalArgumentException | IOException e) {
+			e.printStackTrace();
 			MainActivity.status.post(new Runnable(){
 				@Override
 				public void run() {
@@ -67,7 +76,7 @@ public class Question {
 					MainActivity.status.setText("Error !!!");
 				}
 			});
-		}			
+		} 			
 	}
 	public int play(){  // soundID is standard integer indexes. It's not RawID or any specific number
 		int streamID = 0;
@@ -88,14 +97,14 @@ public class Question {
 	public int getSoundNumber() {
 		return soundNumber;
 	}
+	public int getNoteNumber() {
+		return noteContain;
+	}
 	public float[] getQuestionResult(){
-		return clipDatas.get(files[position-1]).getFreqAnswer();
+		return resultData.get(files[position-1]);
 	}
-	public String getTheoryAnswer(){
-		return clipDatas.get(files[position-1]).getTheoryAnswer();
-	}
-	public String[] getOption(){
-		return clipDatas.get(files[position-1]).getOptionList();
+	public String getQuestionType(){
+		return TYPE;
 	}
 	public void next(){
 		if(position == getSoundNumber()){
@@ -122,18 +131,18 @@ public class Question {
 		});
 	}
 	@SuppressWarnings("unchecked")
-	public HashMap<String, ClipData> deserialize(InputStream path){
-		HashMap<String, ClipData> data = null;
+	public HashMap<String, float[]> deserialize(InputStream path){
         ObjectInputStream in;
+        HashMap<String, float[]> newData = null;
 		try {	        
 	        in = new ObjectInputStream(path);
-	        data =  (HashMap<String, ClipData>) in.readObject();
+	        newData = (HashMap<String, float[]> ) in.readObject();
 	        in.close();
 	        path.close();
 		}
 		catch(Exception ex){
-			ex.printStackTrace();
+			Toast.makeText(context, "Data file cannot be read", Toast.LENGTH_SHORT).show();
 		}
-		return  data;
+		return newData;
 	}
 }

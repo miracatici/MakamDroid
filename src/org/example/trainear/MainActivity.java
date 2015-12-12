@@ -1,6 +1,10 @@
 package org.example.trainear;
 
 
+import org.example.trainear.data.Answer;
+import org.example.trainear.data.Question;
+import org.example.trainear.utilities.AudioUtilities;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.graphics.Color;
@@ -23,9 +27,6 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
-import dataAndroid.Answer;
-import dataAndroid.Question;
-import utilities.AudioUtilities;
 
 public class MainActivity extends Activity {
 	public static TextView status;

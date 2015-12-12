@@ -1,13 +1,14 @@
-package dataAndroid;
+package org.example.trainear.data;
 
 import java.io.Serializable;
 
 public class ClipData implements Serializable {
 
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -8809542674916690344L;
+	private static final long serialVersionUID = 1L;
 	private float[] freqAnswer;
 	private String theoryAnswer, name;
 	private String[] optionList;

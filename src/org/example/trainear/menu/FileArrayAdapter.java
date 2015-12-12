@@ -1,4 +1,4 @@
-package fileChooser;
+package org.example.trainear.menu;
 import java.util.List;
 import java.util.Locale;
 

@@ -1,14 +1,15 @@
-package dataAndroid;
+package org.example.trainear.data;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+
+import org.example.trainear.utilities.AudioUtilities;
 
 import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.media.AudioRecord;
 import android.media.AudioTrack;
 import android.media.MediaRecorder;
-import utilities.AudioUtilities;
 
 public class Answer {
 	private boolean isRunning;

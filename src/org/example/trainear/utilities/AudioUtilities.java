@@ -38,7 +38,7 @@ If not, see <http://www.gnu.org/licenses/>.
  * Bahcesehir University, 2014-2015
  */
 
-package utilities;
+package org.example.trainear.utilities;
 
 import java.io.File;
 import java.io.IOException;
