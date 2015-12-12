@@ -15,11 +15,9 @@ import android.media.SoundPool;
 import android.widget.Toast;
 
 public class Question {
-	private AssetManager assets ;
 	private Context context;
 	private SoundPool sounds;
-	private int soundNumber,noteContain,position=1;
-	private final String TYPE, FOLDER;
+	private int soundNumber,position=1;
 	private String[] files;
 	private HashMap<String, ClipData> clipDatas;
 	
@@ -31,7 +29,7 @@ public class Question {
 	 * 
 	 * @return Question object that is based on SoundPool features
 	 */
-	@SuppressWarnings({"deprecation"})
+	@SuppressWarnings("deprecation")
 	public Question(Context con,String questionType, final int noteNumber) { 
 		MainActivity.status.post(new Runnable(){
 			@Override
@@ -41,11 +39,11 @@ public class Question {
 			}
 		});	
 		sounds = new SoundPool(1,AudioManager.STREAM_MUSIC,0);
-		context = con; TYPE = questionType; noteContain = noteNumber;
-		FOLDER = "audio/" + TYPE + "/" + String.valueOf(noteContain);
-		assets = context.getAssets();
+		context = con; int noteContain = noteNumber;
+		String FOLDER = "audio/" + questionType + "/" + String.valueOf(noteContain);
+		AssetManager assets = context.getAssets();
 		try {
-			clipDatas =  deserialize(assets.open("data/"+TYPE+"_" + String.valueOf(noteContain)+".ser"));
+			clipDatas =  deserialize(assets.open("data/"+questionType+"_" + String.valueOf(noteContain)+".ser"));
 			files = assets.list(FOLDER);
 			soundNumber = files.length;
 			for (int i = 0; i < files.length; i++) {
@@ -90,9 +88,6 @@ public class Question {
 	public int getSoundNumber() {
 		return soundNumber;
 	}
-	public int getNoteNumber() {
-		return noteContain;
-	}
 	public float[] getQuestionResult(){
 		return clipDatas.get(files[position-1]).getFreqAnswer();
 	}
@@ -101,9 +96,6 @@ public class Question {
 	}
 	public String[] getOption(){
 		return clipDatas.get(files[position-1]).getOptionList();
-	}
-	public String getQuestionType(){
-		return TYPE;
 	}
 	public void next(){
 		if(position == getSoundNumber()){

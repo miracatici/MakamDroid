@@ -28,20 +28,20 @@ import dataAndroid.Question;
 import utilities.AudioUtilities;
 
 public class MainActivity extends Activity {
+	public static TextView status;
 	private Question questionSet;
 	private Answer answer;
+	private ImageView resImg1, resImg2, resImg3, resImg4;
 	private TextView dif1,dif2,dif3,dif4, theoAns;
+	private Button btnSelQ, btnPlayQ,btnNext, btnRecA, btnPlayA,btnPrev;
 	private RadioButton quizA1,quizA2,quizA3,quizA4;
 	private RadioGroup quizAnswer, quizAnswer2;
 	private Switch switch1;
-	public static TextView status;
-	private Button btnSelQ, btnPlayQ,btnNext, btnRecA, btnPlayA,btnPrev;
-	private ImageView resImg1, resImg2, resImg3, resImg4;
 	private Spinner questionList;
 	private String QT = "n";
-	private int streamID=0; 
-	private int NN = 1;
+	private int streamID=0, NN = 1; 
 	private OnCheckedChangeListener listener1, listener2;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -67,10 +67,15 @@ public class MainActivity extends Activity {
 	}
 	private void setProperties(){
 		switch1 = (Switch) findViewById(R.id.switch1);
+		switch1.setClickable(false);
 		quizA1 = (RadioButton) findViewById(R.id.quizA1);
+		quizA1.setClickable(false);	
 		quizA2 = (RadioButton) findViewById(R.id.quizA2);
+		quizA2.setClickable(false);	
 		quizA3 = (RadioButton) findViewById(R.id.quizA3);
+		quizA3.setClickable(false);	
 		quizA4 = (RadioButton) findViewById(R.id.quizA4);
+		quizA4.setClickable(false);	
 		quizAnswer = (RadioGroup) findViewById(R.id.quizAnswer);
 		quizAnswer2 = (RadioGroup) findViewById(R.id.quizAnswer2);
 		dif1 = (TextView) findViewById(R.id.dif1);
@@ -90,11 +95,12 @@ public class MainActivity extends Activity {
 		btnPrev = (Button) findViewById(R.id.btnPrev);
 		btnPrev.setEnabled(false);
 		questionList = (Spinner) findViewById(R.id.spinner1);
-		
 		resImg1 = (ImageView) findViewById(R.id.resultImg1);
 		resImg2 = (ImageView) findViewById(R.id.resultImg2);
 		resImg3 = (ImageView) findViewById(R.id.resultImg3);
 		resImg4 = (ImageView) findViewById(R.id.resultImg4);
+		answer = new Answer();
+
 		switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -109,7 +115,6 @@ public class MainActivity extends Activity {
 				quizA4.setClickable(isChecked);		
 			}
 		});
-		switch1.setClickable(false);
 		listener1 = new OnCheckedChangeListener() {
 	        @Override
 	        public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -148,12 +153,8 @@ public class MainActivity extends Activity {
 	    };
 		quizAnswer.setOnCheckedChangeListener(listener1);
 		quizAnswer2.setOnCheckedChangeListener(listener2);
-		quizA1.setClickable(false);	
-		quizA2.setClickable(false);	
-		quizA3.setClickable(false);	
-		quizA4.setClickable(false);	
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-		        R.array.quesList, android.R.layout.simple_spinner_item);
+												R.array.quesList, android.R.layout.simple_spinner_item);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		questionList.setAdapter(adapter);
 		questionList.setOnItemSelectedListener(new OnItemSelectedListener() {
@@ -188,7 +189,6 @@ public class MainActivity extends Activity {
 				
 			}
 		});
-		answer = new Answer();
 		btnSelQ.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -278,7 +278,7 @@ public class MainActivity extends Activity {
 							compare(questionSet,answer);							
 						} catch (Exception e){
 							e.printStackTrace();
-							Toast.makeText(MainActivity.this, "Press long and record, then release", Toast.LENGTH_LONG).show();
+							Toast.makeText(MainActivity.this, "Press long and record, then release", Toast.LENGTH_SHORT).show();
 						}
 	                    return true;
 	            }
@@ -309,7 +309,7 @@ public class MainActivity extends Activity {
 				break;
 		}
 	}
-	public void noteCompare(Question q, Answer a) {
+	private void noteCompare(Question q, Answer a) {
 		float[] resQues = q.getQuestionResult();
 		float[] resAns = a.analyze(NN);
 		int[] answers = new int[NN];
@@ -317,7 +317,7 @@ public class MainActivity extends Activity {
 		for (int i = 0; i < answers.length; i++) {
 			int qCent = AudioUtilities.hertzToCent(resQues[i]);
 			int aCent = AudioUtilities.hertzToCent(resAns[i]);
-			int[] temp = compareCent(qCent, aCent);
+			int[] temp = centCompare(qCent, aCent);
 			answers[i] = temp[0];
 			difference[i] = temp[1];
 		}
@@ -334,8 +334,19 @@ public class MainActivity extends Activity {
 			theoAns.setText("Wrong");
 		}
 	}
-	public void rhythmCompare(Question q, Answer a){
+	private void rhythmCompare(Question q, Answer a){
 		// Rhythm compare methods comes here
+	}
+	private int[] centCompare(float testCent, float recCent){
+		if(Math.abs(testCent - recCent)<50.5f){
+			return new int[]{1,Math.round((Math.abs(testCent - recCent)))};
+		} else if (Math.abs(testCent - (recCent-1200))<50.5f){
+			return new int[]{1,Math.round((Math.abs(testCent - (recCent-1200))))};
+		} else if (Math.abs(testCent - (recCent+1200))<50.5f){
+			return new int[]{1,Math.round((Math.abs(testCent - (recCent+1200))))};
+		} else {
+			return new int[]{2,Math.round((Math.abs(testCent - recCent)))};
+		}
 	}
 	private void setDifferenceResult(int... results){
 		switch(results.length){
@@ -381,6 +392,9 @@ public class MainActivity extends Activity {
 				break;	
 		}		
 	}
+	private void setOption(){
+		
+	}
 	private void changeImage(ImageView img, int res){   // 0 is non available ** 1 is true ** 2 is false
 		switch(res){
 			case 0:
@@ -393,26 +407,11 @@ public class MainActivity extends Activity {
 				img.setImageResource(android.R.drawable.presence_busy);
 		}
 	}
-	private void setOption(){
-		
-	}
-	
 	private void clearChekcs(){
 		quizAnswer.setOnCheckedChangeListener(null);
 		quizAnswer2.setOnCheckedChangeListener(null);
 		quizAnswer.clearCheck(); quizAnswer2.clearCheck(); 
 		quizAnswer.setOnCheckedChangeListener(listener1);
 		quizAnswer2.setOnCheckedChangeListener(listener2);
-	}
-	private int[] compareCent(float testCent, float recCent){
-		if(Math.abs(testCent - recCent)<50.5f){
-			return new int[]{1,Math.round((Math.abs(testCent - recCent)))};
-		} else if (Math.abs(testCent - (recCent-1200))<50.5f){
-			return new int[]{1,Math.round((Math.abs(testCent - (recCent-1200))))};
-		} else if (Math.abs(testCent - (recCent+1200))<50.5f){
-			return new int[]{1,Math.round((Math.abs(testCent - (recCent+1200))))};
-		} else {
-			return new int[]{2,Math.round((Math.abs(testCent - recCent)))};
-		}
 	}
 }
