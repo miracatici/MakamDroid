@@ -42,7 +42,7 @@ public class MainActivity extends Activity {
 	private String QT = "n";
 	private int streamID=0, NN = 1; 
 	private OnCheckedChangeListener listener1, listener2;
-	
+	// Main Activity Working MBP
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
