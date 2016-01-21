@@ -1,6 +1,5 @@
 package org.example.trainear;
 
-
 import org.example.trainear.data.Answer;
 import org.example.trainear.data.Question;
 import org.example.trainear.utilities.AudioUtilities;
@@ -42,7 +41,7 @@ public class MainActivity extends Activity {
 	private String QT = "n";
 	private int streamID=0, NN = 1; 
 	private OnCheckedChangeListener listener1, listener2;
-	// Main Activity Working AIR
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
