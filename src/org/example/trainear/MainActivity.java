@@ -1,6 +1,7 @@
 package org.example.trainear;
 
 import org.example.trainear.data.Answer;
+import org.example.trainear.data.PlayTone;
 import org.example.trainear.data.Question;
 import org.example.trainear.utilities.AudioUtilities;
 
@@ -235,15 +236,17 @@ public class MainActivity extends Activity {
 		btnNext.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				questionSet.stop(streamID);
-				questionSet.next();
-				btnPlayQ.setText("Play Q");
-				setResultImage(0,0,0,0);
-				setDifferenceResult(0,0,0,0);
-				setOption();
-				clearChekcs();
-				theoAns.setTextColor(Color.WHITE);
-				theoAns.setText("Answer");
+				new PlayTone().test();
+
+//				questionSet.stop(streamID);
+//				questionSet.next();
+//				btnPlayQ.setText("Play Q");
+//				setResultImage(0,0,0,0);
+//				setDifferenceResult(0,0,0,0);
+//				setOption();
+//				clearChekcs();
+//				theoAns.setTextColor(Color.WHITE);
+//				theoAns.setText("Answer");
 			}
 		});
 		btnPrev.setOnClickListener(new OnClickListener() {
