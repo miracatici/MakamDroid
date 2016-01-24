@@ -16,24 +16,22 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name" >
+        android:theme="@style/AppTheme" >
+        <activity android:name="main.MainActivity" android:label="@string/title_activity_main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="main.MicroEar" android:label="@string/title_activity_micro_ear"></activity>
         <activity
-            android:name=".SecondActivity"
+            android:name="main.TetEar" android:label="@string/app_name" ></activity>
+        <activity android:name="menu.FileChooser" android:label="@string/title_activity_file_chooser"></activity>
+        <activity
+            android:name="main.SecondActivity"
             android:label="@string/title_activity_second" >
-        </activity>
-        <activity 
-            android:name="org.example.trainear.menu.FileChooser"
-            android:label="@string/title_activity_file_chooser">
-        </activity>
+        </activity>        
     </application>
 
 </manifest>

@@ -22,7 +22,7 @@
  * Bahcesehir University, 2014-2015
  */
 
-package org.example.trainear.data;
+package backEnd;
 /**
  * The main f0 Pitch track estimation class. 
  * It can be used with wave file object
@@ -42,9 +42,9 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.example.trainear.utilities.AudioUtilities;
 
 import be.tarsos.dsp.pitch.Yin;
+import utilities.AudioUtilities;
 
 
 public class PitchDetection {

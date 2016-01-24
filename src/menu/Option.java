@@ -1,4 +1,4 @@
-package org.example.trainear.menu;
+package menu;
 
 public class Option implements Comparable<Option>{
 	private String name;

@@ -1,4 +1,4 @@
-package org.example.trainear.data;
+package backEnd;
 
 import java.io.Serializable;
 

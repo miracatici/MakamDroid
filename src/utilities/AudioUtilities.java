@@ -38,7 +38,7 @@ If not, see <http://www.gnu.org/licenses/>.
  * Bahcesehir University, 2014-2015
  */
 
-package org.example.trainear.utilities;
+package utilities;
 
 import java.io.File;
 import java.io.IOException;
@@ -387,9 +387,10 @@ public abstract class AudioUtilities {
 		}
 		return x;	
 	}
-	public static byte[] floatToByteArray(float[] in_buff, byte[] out_buff) {
+	public static byte[] floatToByteArray(float[] in_buff) {
         int ox = 0;
         int len = in_buff.length;
+        byte[] out_buff = new byte[len*2];
         for (int ix = 0; ix < len; ix++) {
             int x = (int) (in_buff[ix] * 32767.0);
             out_buff[ox++] = (byte) x;

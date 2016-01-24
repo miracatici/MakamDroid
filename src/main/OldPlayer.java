@@ -1,4 +1,4 @@
-package org.example.trainear;
+package main;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -6,9 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.Field;
 
-import org.example.trainear.data.Question;
-import org.example.trainear.menu.FileChooser;
-import org.example.trainear.utilities.AudioUtilities;
+import org.example.trainear.R;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -31,9 +29,12 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+import backEnd.Question;
 import be.tarsos.dsp.pitch.Yin;
+import menu.FileChooser;
+import utilities.AudioUtilities;
 
-public class MainActivity2 extends Activity {
+public class OldPlayer extends Activity {
 	private TextView txtPitch; 
 	private Button btnStart, btnStop, btnSelect, btnPlay, btnPStop, btnPlayWav, btnStopWav, btnSelPlay, 
 					btnSelQ, btnPlayQ,btnNext, btnRecA, btnAnalyze;
@@ -53,7 +54,7 @@ public class MainActivity2 extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_tet);
 		setProperties();
 	}
 	@Override
@@ -114,7 +115,7 @@ public class MainActivity2 extends Activity {
 			public void onClick(View v) {
 				btnStart.setEnabled(false);
 				btnStop.setEnabled(true);
-				Toast.makeText(MainActivity2.this, "Basliyor", Toast.LENGTH_SHORT).show();
+				Toast.makeText(OldPlayer.this, "Basliyor", Toast.LENGTH_SHORT).show();
 				startTracking();
 			}
 		});
@@ -125,13 +126,13 @@ public class MainActivity2 extends Activity {
 				btnStop.setEnabled(false);
 				recorder.stop();
 				isRunning = false;
-				Toast.makeText(MainActivity2.this, "Durduruldu", Toast.LENGTH_SHORT).show();
+				Toast.makeText(OldPlayer.this, "Durduruldu", Toast.LENGTH_SHORT).show();
 			}
 		});
 		btnPlay.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(MainActivity2.this, "Basliyor", Toast.LENGTH_SHORT).show();
+				Toast.makeText(OldPlayer.this, "Basliyor", Toast.LENGTH_SHORT).show();
 				mpintro.start();
 				btnPStop.setEnabled(true);
 				btnPlay.setEnabled(false);
@@ -143,7 +144,7 @@ public class MainActivity2 extends Activity {
 				mpintro.pause();
 				btnPStop.setEnabled(false);
 				btnPlay.setEnabled(true);
-				Toast.makeText(MainActivity2.this, "Durduruldu", Toast.LENGTH_SHORT).show();
+				Toast.makeText(OldPlayer.this, "Durduruldu", Toast.LENGTH_SHORT).show();
 			}
 		});
 		btnSelect.setOnClickListener(new OnClickListener(){
@@ -165,7 +166,7 @@ public class MainActivity2 extends Activity {
 				try {
 					btnStopWav.setEnabled(true);
 					btnPlayWav.setEnabled(false);
-					Toast.makeText(MainActivity2.this, "Basliyor", Toast.LENGTH_SHORT).show();
+					Toast.makeText(OldPlayer.this, "Basliyor", Toast.LENGTH_SHORT).show();
 					readWav(Environment.getExternalStorageDirectory()+"/Download/test.mp3/");
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -178,7 +179,7 @@ public class MainActivity2 extends Activity {
 				at.pause();
 				btnStopWav.setEnabled(false);
 				btnPlayWav.setEnabled(true);
-				Toast.makeText(MainActivity2.this, "Durduruldu", Toast.LENGTH_SHORT).show();
+				Toast.makeText(OldPlayer.this, "Durduruldu", Toast.LENGTH_SHORT).show();
 			}
 		});
 		btnSelPlay.setOnClickListener(new OnClickListener() {
@@ -191,7 +192,7 @@ public class MainActivity2 extends Activity {
 			@Override
 			public void onClick(View v) {
 				btnSelQ.setEnabled(false);
-				q1set = new Question(MainActivity2.this,"n",1);
+				q1set = new Question(OldPlayer.this,"n",1);
 			}
 		});
 		btnPlayQ.setOnClickListener(new OnClickListener() {
@@ -219,7 +220,7 @@ public class MainActivity2 extends Activity {
 				btnPlayQ.setText("Play Q");
 				if(position == q1set.getSoundNumber()){
 					btnNext.setEnabled(false);
-					Toast.makeText(MainActivity2.this, "Maximum files is played", Toast.LENGTH_SHORT).show();
+					Toast.makeText(OldPlayer.this, "Maximum files is played", Toast.LENGTH_SHORT).show();
 				}
 			}
 		});
@@ -314,7 +315,7 @@ public class MainActivity2 extends Activity {
 				mpintro.setDataSource((String)path);
 				mpintro.prepareAsync();
 			} else if (path instanceof Integer){
-				mpintro = MediaPlayer.create(MainActivity2.this, (Integer) path);
+				mpintro = MediaPlayer.create(OldPlayer.this, (Integer) path);
 				playerListener();
 			}
 		} catch (IllegalArgumentException e) {

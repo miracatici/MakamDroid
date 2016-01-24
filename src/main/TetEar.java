@@ -1,9 +1,6 @@
-package org.example.trainear;
+package main;
 
-import org.example.trainear.data.Answer;
-import org.example.trainear.data.PlayTone;
-import org.example.trainear.data.Question;
-import org.example.trainear.utilities.AudioUtilities;
+import org.example.trainear.R;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -27,8 +24,11 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+import backEnd.Answer;
+import backEnd.Question;
+import utilities.AudioUtilities;
 
-public class MainActivity extends Activity {
+public class TetEar extends Activity {
 	public static TextView status;
 	private Question questionSet;
 	private Answer answer;
@@ -46,7 +46,7 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_tet);
 		setProperties();
 	}
 	@Override
@@ -197,7 +197,7 @@ public class MainActivity extends Activity {
 					new Thread(new Runnable(){
 						@Override
 						public void run() {
-							questionSet = new Question(MainActivity.this,QT,NN);							
+							questionSet = new Question(TetEar.this,QT,NN);							
 							answer = new Answer();						
 						}	
 					}).start();
@@ -214,7 +214,7 @@ public class MainActivity extends Activity {
 					btnPrev.setEnabled(true);
 				} catch (Exception e) {
 					e.printStackTrace();
-					Toast.makeText(MainActivity.this, "Error occured Main, no files loaded", Toast.LENGTH_SHORT).show();
+					Toast.makeText(TetEar.this, "Error occured Main, no files loaded", Toast.LENGTH_SHORT).show();
 				}						
 			}	
 		});
@@ -236,17 +236,15 @@ public class MainActivity extends Activity {
 		btnNext.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				new PlayTone().test();
-
-//				questionSet.stop(streamID);
-//				questionSet.next();
-//				btnPlayQ.setText("Play Q");
-//				setResultImage(0,0,0,0);
-//				setDifferenceResult(0,0,0,0);
-//				setOption();
-//				clearChekcs();
-//				theoAns.setTextColor(Color.WHITE);
-//				theoAns.setText("Answer");
+				questionSet.stop(streamID);
+				questionSet.next();
+				btnPlayQ.setText("Play Q");
+				setResultImage(0,0,0,0);
+				setDifferenceResult(0,0,0,0);
+				setOption();
+				clearChekcs();
+				theoAns.setTextColor(Color.WHITE);
+				theoAns.setText("Answer");
 			}
 		});
 		btnPrev.setOnClickListener(new OnClickListener() {
@@ -281,7 +279,7 @@ public class MainActivity extends Activity {
 							compare(questionSet,answer);							
 						} catch (Exception e){
 							e.printStackTrace();
-							Toast.makeText(MainActivity.this, "Press long and record, then release", Toast.LENGTH_SHORT).show();
+							Toast.makeText(TetEar.this, "Press long and record, then release", Toast.LENGTH_SHORT).show();
 						}
 	                    return true;
 	            }
