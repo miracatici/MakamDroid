@@ -1,6 +1,7 @@
-package main;
+package org.example.trainear.main;
 
 import org.example.trainear.R;
+import org.example.trainear.menu.FileChooser;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import menu.FileChooser;
 
 public class MainActivity extends Activity {
 	private Button btnTetStart, btnMicroStart, btnMenu;

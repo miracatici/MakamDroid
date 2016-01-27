@@ -1,4 +1,4 @@
-package synth;
+package org.example.trainear.synth;
 
 /**
  * A bounded queue is a FIFO (first in - first out) sequence of objects.

@@ -1,6 +1,9 @@
-package main;
+package org.example.trainear.main;
 
 import org.example.trainear.R;
+import org.example.trainear.backEnd.Answer;
+import org.example.trainear.backEnd.Question;
+import org.example.trainear.utilities.AudioUtilities;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -24,9 +27,6 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
-import backEnd.Answer;
-import backEnd.Question;
-import utilities.AudioUtilities;
 
 public class TetEar extends Activity {
 	public static TextView status;
@@ -34,7 +34,7 @@ public class TetEar extends Activity {
 	private Answer answer;
 	private ImageView resImg1, resImg2, resImg3, resImg4;
 	private TextView dif1,dif2,dif3,dif4, theoAns;
-	private Button btnSelQ, btnPlayQ,btnNext, btnRecA, btnPlayA,btnPrev;
+	private Button btnPlayQ,btnNext, btnRecA, btnPlayA,btnPrev;
 	private RadioButton quizA1,quizA2,quizA3,quizA4;
 	private RadioGroup quizAnswer, quizAnswer2;
 	private Switch switch1;
@@ -67,7 +67,7 @@ public class TetEar extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	private void setProperties(){
-		switch1 = (Switch) findViewById(R.id.switch1);
+		switch1 = (Switch) findViewById(R.id.switch1T);
 		switch1.setClickable(false);
 		quizA1 = (RadioButton) findViewById(R.id.quizA1);
 		quizA1.setClickable(false);	
@@ -77,7 +77,7 @@ public class TetEar extends Activity {
 		quizA3.setClickable(false);	
 		quizA4 = (RadioButton) findViewById(R.id.quizA4);
 		quizA4.setClickable(false);	
-		quizAnswer = (RadioGroup) findViewById(R.id.quizAnswer);
+		quizAnswer = (RadioGroup) findViewById(R.id.quizAnswer1);
 		quizAnswer2 = (RadioGroup) findViewById(R.id.quizAnswer2);
 		dif1 = (TextView) findViewById(R.id.dif1);
 		dif2 = (TextView) findViewById(R.id.dif2);
@@ -85,7 +85,6 @@ public class TetEar extends Activity {
 		dif4 = (TextView) findViewById(R.id.dif4);
 		status = (TextView) findViewById(R.id.status);
 		theoAns = (TextView) findViewById(R.id.theoAns);
-		btnSelQ = (Button) findViewById(R.id.btnSelQ);
 		btnPlayQ = (Button) findViewById(R.id.btnPlayQ);
 		btnPlayQ.setEnabled(false);
 		btnRecA = (Button) findViewById(R.id.btnRecA);
@@ -183,40 +182,12 @@ public class TetEar extends Activity {
 						QT = "r";
 						break;	
 				}
-				btnSelQ.setEnabled(true);
+				selectQuestionSet();
 			}
 			@Override
 			public void onNothingSelected(AdapterView<?> arg0) {
 				
 			}
-		});
-		btnSelQ.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				try{ 
-					new Thread(new Runnable(){
-						@Override
-						public void run() {
-							questionSet = new Question(TetEar.this,QT,NN);							
-							answer = new Answer();						
-						}	
-					}).start();
-					setResultImage(0,0,0,0);
-					setDifferenceResult(0,0,0,0);
-					setOption();
-					clearChekcs();
-					switch1.setClickable(true);
-					switch1.setChecked(false);
-					btnSelQ.setEnabled(false);
-					btnPlayQ.setEnabled(true);
-					btnPlayA.setEnabled(false);
-					btnNext.setEnabled(true);
-					btnPrev.setEnabled(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-					Toast.makeText(TetEar.this, "Error occured Main, no files loaded", Toast.LENGTH_SHORT).show();
-				}						
-			}	
 		});
 		btnPlayQ.setOnClickListener(new OnClickListener() {
 			@Override
@@ -272,8 +243,8 @@ public class TetEar extends Activity {
 						btnPlayA.setEnabled(false);
 	                    return true;
 	                case MotionEvent.ACTION_UP:
-	                	btnRecA.setPressed(false);
 	                	answer.stopRecord();
+	                	btnRecA.setPressed(false);
 						btnPlayA.setEnabled(true);
 						try {
 							compare(questionSet,answer);							
@@ -325,6 +296,9 @@ public class TetEar extends Activity {
 		setDifferenceResult(difference);
 		setResultImage(answers);
 	}
+	private void rhythmCompare(Question q, Answer a){
+		// Rhythm compare methods comes here
+	}
 	private void theoryCompare(String a){
 		String resQues = questionSet.getTheoryAnswer();
 		if(a.equals(resQues)){
@@ -335,20 +309,7 @@ public class TetEar extends Activity {
 			theoAns.setText("Wrong");
 		}
 	}
-	private void rhythmCompare(Question q, Answer a){
-		// Rhythm compare methods comes here
-	}
-	private int[] centCompare(float testCent, float recCent){
-		if(Math.abs(testCent - recCent)<50.5f){
-			return new int[]{1,Math.round((Math.abs(testCent - recCent)))};
-		} else if (Math.abs(testCent - (recCent-1200))<50.5f){
-			return new int[]{1,Math.round((Math.abs(testCent - (recCent-1200))))};
-		} else if (Math.abs(testCent - (recCent+1200))<50.5f){
-			return new int[]{1,Math.round((Math.abs(testCent - (recCent+1200))))};
-		} else {
-			return new int[]{2,Math.round((Math.abs(testCent - recCent)))};
-		}
-	}
+	
 	private void setDifferenceResult(int... results){
 		switch(results.length){
 			case 1:
@@ -393,6 +354,17 @@ public class TetEar extends Activity {
 				break;	
 		}		
 	}
+	private int[] centCompare(float testCent, float recCent){
+		if(Math.abs(testCent - recCent)<50.5f){
+			return new int[]{1,Math.round((Math.abs(testCent - recCent)))};
+		} else if (Math.abs(testCent - (recCent-1200))<50.5f){
+			return new int[]{1,Math.round((Math.abs(testCent - (recCent-1200))))};
+		} else if (Math.abs(testCent - (recCent+1200))<50.5f){
+			return new int[]{1,Math.round((Math.abs(testCent - (recCent+1200))))};
+		} else {
+			return new int[]{2,Math.round((Math.abs(testCent - recCent)))};
+		}
+	}
 	private void setOption(){
 		
 	}
@@ -414,5 +386,29 @@ public class TetEar extends Activity {
 		quizAnswer.clearCheck(); quizAnswer2.clearCheck(); 
 		quizAnswer.setOnCheckedChangeListener(listener1);
 		quizAnswer2.setOnCheckedChangeListener(listener2);
+	}
+	private void selectQuestionSet(){
+		try{ 
+			new Thread(new Runnable(){
+				@Override
+				public void run() {
+					questionSet = new Question(TetEar.this,QT,NN);							
+					answer = new Answer();						
+				}	
+			}).start();
+			setResultImage(0,0,0,0);
+			setDifferenceResult(0,0,0,0);
+			setOption();
+			clearChekcs();
+			switch1.setClickable(true);
+			switch1.setChecked(false);
+			btnPlayQ.setEnabled(true);
+			btnPlayA.setEnabled(false);
+			btnNext.setEnabled(true);
+			btnPrev.setEnabled(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+			Toast.makeText(TetEar.this, "Error occured Main, no files loaded", Toast.LENGTH_SHORT).show();
+		}	
 	}
 }

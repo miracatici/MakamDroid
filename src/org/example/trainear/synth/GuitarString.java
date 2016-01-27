@@ -1,4 +1,4 @@
-package synth;
+package org.example.trainear.synth;
 
 /**
  * To simulate a guitar string, we use the Karplus-Strong algorithm, a

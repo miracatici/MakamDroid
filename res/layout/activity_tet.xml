@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="main.TetEar" >
+    tools:context="org.example.trainear.main.TetEar" >
 
     <TextView
         android:id="@+id/textView1"
@@ -29,13 +29,6 @@
             android:layout_height="46dp"
             android:layout_weight="1"
             android:background="#FFFFFF" />
-
-        <Button
-            android:id="@+id/btnSelQ"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/btnSelQ" />
     </LinearLayout>
 
     <LinearLayout
@@ -74,14 +67,13 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="91dp" >
 
         <TextView
             android:id="@+id/textView6"
-            android:layout_width="177dp"
-            android:layout_height="81dp"
-            android:layout_weight="0.50"
-            android:text="Press and hold Rec button to record answer. When you release results will be shown"
+            android:layout_width="140dp"
+            android:layout_height="match_parent"
+            android:text="Press and hold Rec to record answer. Release to show the results"
             android:textColor="#FFFFFF" />
 
         <Button
@@ -109,8 +101,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.05" >
+        android:layout_height="wrap_content" >
 
         <TextView
             android:id="@+id/dif1"
@@ -146,19 +137,19 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" >
 
         <TextView
             android:id="@+id/textView3"
-            android:layout_width="wrap_content"
+            android:layout_width="74dp"
             android:layout_height="wrap_content"
             android:text="Theory Answer"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#FFFFFF" />
 
         <Switch
-            android:id="@+id/switch1"
+            android:id="@+id/switch1T"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
@@ -169,14 +160,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/legend_text_font_size"
+            android:layout_weight="1.15"
             android:text="Answer"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#FFFFFF" />
-
     </LinearLayout>
 
     <RadioGroup
-        android:id="@+id/quizAnswer"
+        android:id="@+id/quizAnswer1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.02"

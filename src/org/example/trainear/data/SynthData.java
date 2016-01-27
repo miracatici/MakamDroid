@@ -1,8 +1,8 @@
-package backEnd;
+package org.example.trainear.data;
 
 import java.io.Serializable;
 
-public class ClipData implements Serializable {
+public class SynthData implements Serializable {
 
 
 	/**
@@ -10,11 +10,11 @@ public class ClipData implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private float[] freqAnswer;
-	private String theoryAnswer, name;
+	private String theoryAnswer;
 	private String[] optionList;
 	
-	public ClipData(String nam, String ans, float[] ans2, String[] list){
-		name = nam; theoryAnswer = ans; freqAnswer = ans2; optionList = list;
+	public SynthData(String ans, float[] ans2, String[] list){
+		theoryAnswer = ans; freqAnswer = ans2; optionList = list;
 	}
 
 	public float[] getFreqAnswer() {
@@ -22,9 +22,6 @@ public class ClipData implements Serializable {
 	}
 	public String getTheoryAnswer() {
 		return theoryAnswer;
-	}
-	public String getName() {
-		return name;
 	}
 	public String[] getOptionList() {
 		return optionList;

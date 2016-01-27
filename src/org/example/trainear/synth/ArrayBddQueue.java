@@ -1,4 +1,4 @@
-package synth;
+package org.example.trainear.synth;
 /**
  * This BddQueue implementation uses a circular array.
  *

@@ -1,22 +1,237 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#333333"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="main.MicroEar" >
+    tools:context="org.example.trainear.main.MicroEar" >
 
-    <Button
-        android:id="@+id/btn"
+    <TextView
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="14dp"
-        android:layout_marginTop="16dp"
-        android:text="Button" />
+        android:text="Select a question type"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#FFFFFF" />
 
-</RelativeLayout>
+    <Spinner
+        android:id="@+id/questionListM"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:background="#FFFFFF" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/btnPlayM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Play" />
+
+        <Button
+            android:id="@+id/btnNextM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Next" />
+
+        <TextView
+            android:id="@+id/statusM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Status"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#FFFFFF" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="62dp" >
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="128dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.74"
+            android:text="Press and hold to record, release to analyze"
+            android:textAppearance="?android:attr/textAppearance"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/btnRecAM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rec" />
+
+        <Button
+            android:id="@+id/btnPlayAM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Play" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.15" >
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="92dp"
+            android:layout_height="wrap_content"
+            android:text="Theory Answer"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#FFFFFF" />
+
+        <Switch
+            android:id="@+id/switch1M"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/theoAnsM"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Answer"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#FFFFFF" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.02"
+        android:orientation="vertical" >
+
+        <RadioGroup
+            android:id="@+id/quizAnswer1M"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.02"
+            android:background="#FFFFFF"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/quizA1M"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:text="Koma" />
+
+            <RadioButton
+                android:id="@+id/quizA2M"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="Eksik Bakkiyye" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/quizAnswer2M"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.02"
+            android:background="#FFFFFF"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/quizA3M"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Bakkiyye" />
+
+            <RadioButton
+                android:id="@+id/quizA4M"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.23"
+                android:text="Küçük Mücennep" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/quizAnswer3M"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.02"
+            android:background="#FFFFFF"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/quizA5M"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.06"
+                android:text="Büyük Mücennep" />
+
+            <RadioButton
+                android:id="@+id/quizA6M"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.78"
+                android:text="Tanini" />
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/resultImg1M"
+            android:layout_width="wrap_content"
+            android:layout_height="59dp"
+            android:layout_weight="0.88"
+            android:src="@android:drawable/presence_invisible" />
+
+        <ImageView
+            android:id="@+id/resultImg2M"
+            android:layout_width="wrap_content"
+            android:layout_height="59dp"
+            android:layout_weight="0.88"
+            android:src="@android:drawable/presence_invisible" />
+
+        <ImageView
+            android:id="@+id/resultImg3M"
+            android:layout_width="wrap_content"
+            android:layout_height="59dp"
+            android:layout_weight="0.88"
+            android:src="@android:drawable/presence_invisible" />
+
+        <ImageView
+            android:id="@+id/resultImg4M"
+            android:layout_width="wrap_content"
+            android:layout_height="59dp"
+            android:layout_weight="0.88"
+            android:src="@android:drawable/presence_invisible" />
+
+        <ImageView
+            android:id="@+id/resultImg5M"
+            android:layout_width="wrap_content"
+            android:layout_height="59dp"
+            android:layout_weight="0.88"
+            android:src="@android:drawable/presence_invisible" />
+    </LinearLayout>
+
+</LinearLayout>

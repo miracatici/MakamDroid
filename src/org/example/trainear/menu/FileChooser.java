@@ -1,4 +1,4 @@
-package menu;
+package org.example.trainear.menu;
 
 import java.io.File;
 import java.io.FileFilter;

@@ -1,4 +1,4 @@
-package backEnd;
+package org.example.trainear.backEnd;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -7,13 +7,15 @@ import java.io.ObjectInputStream;
 import java.io.StreamCorruptedException;
 import java.util.HashMap;
 
+import org.example.trainear.data.ClipData;
+import org.example.trainear.main.TetEar;
+
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.widget.Toast;
-import main.TetEar;
 
 public class Question {
 	private Context context;

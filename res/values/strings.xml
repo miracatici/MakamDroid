@@ -12,7 +12,6 @@
     <string name="btnSelect">Select File</string>
     <string name="btnPlayWav">Play Wave File</string>
     <string name="btnStopWav">Stop Wave File</string>
-    <string name="title_activity_second">SecondActivity</string>
     <string name="title_activity_file_chooser">FileChooser</string>
     <string name="hello">Hello World, FileChooser!</string>
     <string name="folder">Folder</string>
@@ -35,6 +34,12 @@
         <item>4 Note</item>
         <item>Rhythm</item>
     </string-array>
+    <string-array name="quesListM">
+        <item>Intervals</item>
+        <item>Tri-chord</item>
+        <item>Tetra-chord</item>
+        <item>Penta-chord</item>
+    </string-array>
 
     <string name="difference_in_cent">Difference in Cent</string>
     <string name="header">Choose question type and press Select</string>
@@ -53,7 +58,8 @@
     <string name="dif_3">Dif 3</string>
     <string name="dif_4">Dif 4</string>
     <string name="question">Question</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">TrainEar</string>
     <string name="title_activity_micro_ear">MicroEar</string>
-
+    <string name="title_activity_tet">EqualEar</string>
+    
 </resources>

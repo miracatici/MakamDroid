@@ -1,9 +1,11 @@
-package test;
+package org.example.trainear.test;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.util.HashMap;
+
+import org.example.trainear.main.TetEar;
 
 import android.content.Context;
 import android.content.res.AssetManager;
@@ -11,7 +13,6 @@ import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.widget.Toast;
-import main.TetEar;
 
 public class Test {
 	private AssetManager assets ;

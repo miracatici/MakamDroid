@@ -1,4 +1,4 @@
-package main;
+package org.example.trainear.main;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 
 import org.example.trainear.R;
+import org.example.trainear.backEnd.Question;
+import org.example.trainear.menu.FileChooser;
+import org.example.trainear.utilities.AudioUtilities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -29,10 +32,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-import backEnd.Question;
 import be.tarsos.dsp.pitch.Yin;
-import menu.FileChooser;
-import utilities.AudioUtilities;
 
 public class OldPlayer extends Activity {
 	private TextView txtPitch; 
@@ -87,7 +87,6 @@ public class OldPlayer extends Activity {
 //		btnPStop = (Button) findViewById(R.id.btnPStop);
 //		btnPlayWav = (Button) findViewById(R.id.btnPlayWav);
 //		btnStopWav = (Button) findViewById(R.id.btnStopWav);
-		btnSelQ = (Button) findViewById(R.id.btnSelQ);
 		btnPlayQ = (Button) findViewById(R.id.btnPlayQ);
 		btnRecA = (Button) findViewById(R.id.btnRecA);
 		btnNext = (Button) findViewById(R.id.btnNext);
