@@ -108,7 +108,6 @@ public class MicroEar extends Activity {
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 				NN = (int) arg3 + 2;
-				System.out.println("Sound Number: "+NN);
 				question.setData("seq", 330,440);
 			}
 			@Override

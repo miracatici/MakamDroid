@@ -1,0 +1,175 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#333333"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="org.example.trainear.main.SongEar" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/songName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.04"
+                android:text="Song name"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/title_font_size" />
+
+            <Button
+                android:id="@+id/btnMenuSel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Menu" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <Spinner
+                android:id="@+id/spinnerS"
+                android:layout_width="157dp"
+                android:layout_height="40dp"
+                android:background="#FFFFFF" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:gravity="right"
+                android:text="Select note number to play"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#FFFFFF" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="67dp" >
+
+            <Button
+                android:id="@+id/btnPlayS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:text="Play" />
+
+            <Button
+                android:id="@+id/btnNextS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:text="Next" />
+
+            <Button
+                android:id="@+id/btnPrevS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:text="Prev" />
+
+            <TextView
+                android:id="@+id/statusS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:text="Status"
+                android:textColor="#FFFFFF" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="136dp"
+                android:layout_height="97dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.66"
+                android:gravity="bottom"
+                android:text="Press and hold to record, release to analyze"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/btnRecS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="Rec" />
+
+            <Button
+                android:id="@+id/btnPlaySA"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="Play" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <ImageView
+                android:id="@+id/ImageView04"
+                android:layout_width="wrap_content"
+                android:layout_height="59dp"
+                android:layout_gravity="bottom"
+                android:layout_weight="0.88"
+                android:src="@android:drawable/presence_invisible" />
+
+            <ImageView
+                android:id="@+id/ImageView03"
+                android:layout_width="wrap_content"
+                android:layout_height="59dp"
+                android:layout_gravity="bottom"
+                android:layout_weight="0.88"
+                android:src="@android:drawable/presence_invisible" />
+
+            <ImageView
+                android:id="@+id/ImageView02"
+                android:layout_width="wrap_content"
+                android:layout_height="59dp"
+                android:layout_gravity="bottom"
+                android:layout_weight="0.88"
+                android:src="@android:drawable/presence_invisible" />
+
+            <ImageView
+                android:id="@+id/ImageView01"
+                android:layout_width="wrap_content"
+                android:layout_height="59dp"
+                android:layout_gravity="bottom"
+                android:layout_weight="0.88"
+                android:src="@android:drawable/presence_invisible" />
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="wrap_content"
+                android:layout_height="59dp"
+                android:layout_gravity="bottom"
+                android:layout_weight="0.88"
+                android:src="@android:drawable/presence_invisible" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

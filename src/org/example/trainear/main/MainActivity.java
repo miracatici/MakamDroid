@@ -1,7 +1,6 @@
 package org.example.trainear.main;
 
 import org.example.trainear.R;
-import org.example.trainear.menu.FileChooser;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,9 +12,9 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 public class MainActivity extends Activity {
-	private Button btnTetStart, btnMicroStart, btnMenu;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		Button btnTetStart, btnMicroStart, btnMenu;
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		btnMicroStart = (Button) findViewById(R.id.btnMicroStart);
@@ -39,7 +38,7 @@ public class MainActivity extends Activity {
 		btnMenu.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				Intent intent = new Intent(MainActivity.this,FileChooser.class);
+				Intent intent = new Intent(MainActivity.this,SongEar.class);
 				startActivity(intent);
 			}
 		});

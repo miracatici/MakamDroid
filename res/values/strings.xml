@@ -61,5 +61,6 @@
     <string name="title_activity_main">TrainEar</string>
     <string name="title_activity_micro_ear">MicroEar</string>
     <string name="title_activity_tet">EqualEar</string>
-    
+    <string name="title_activity_song_ear">SongEar</string>
+
 </resources>
