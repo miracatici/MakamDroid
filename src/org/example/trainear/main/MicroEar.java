@@ -30,6 +30,7 @@ import android.widget.Toast;
 
 public class MicroEar extends Activity {
 	
+	private float[] quesCentData = new float[]{4800,5000,5200,5400,5600,5800,6000};
 	private OnCheckedChangeListener listener1M,listener2M, listener3M;
 	private Button btnPlayM,btnNextM, btnRecAM, btnPlayAM;
 	private RadioButton quizA1M,quizA2M,quizA3M,quizA4M,quizA5M,quizA6M;
@@ -81,7 +82,7 @@ public class MicroEar extends Activity {
 		resImg4M = (ImageView) findViewById(R.id.resultImg4M);
 		resImg5M = (ImageView) findViewById(R.id.resultImg5M);
 		answer = new Answer();
-		question = new SynthPlayer();
+		question = new SynthPlayer(status,1f);
 		btnRecAM = (Button) findViewById(R.id.btnRecAM);
 		btnPlayAM = (Button) findViewById(R.id.btnPlayAM);
 		quizA1M = (RadioButton) findViewById(R.id.quizA1M);
@@ -108,7 +109,14 @@ public class MicroEar extends Activity {
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 				NN = (int) arg3 + 2;
-				question.setData("seq", 330,440);
+				question.setPosition(0);
+				question.setNoteNumber(NN);
+				question.setInterval(quesCentData);
+				question.setData("seq");
+				btnPlayM.setText("Play");
+				setResultImage(0,0,0,0);
+				setDifferenceResult(0,0,0,0);
+				clearChekcs();
 			}
 			@Override
 			public void onNothingSelected(AdapterView<?> parent) {
@@ -184,20 +192,20 @@ public class MicroEar extends Activity {
 				switch(btnPlayM.getText().toString()) {
 				case "Play":
 					btnPlayM.setText("Stop");
-					question.playSynth();
+					question.playSynth("seq");
 					break;
 				case "Stop" :
 					btnPlayM.setText("Play");
 					question.stopSynth();
 					break;
-			}				
+				}				
 			}
 		});
 	    btnNextM.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				question.stopSynth();
-				question.setData("seq", 165,220);
+				question.next();
 				btnPlayM.setText("Play");
 				setResultImage(0,0,0,0);
 				setDifferenceResult(0,0,0,0);
@@ -359,10 +367,16 @@ public class MicroEar extends Activity {
 			System.out.println(testCent - recCent);
 			return new int[]{1,Math.round((Math.abs(testCent - recCent)))};
 		} else if (Math.abs(testCent - (recCent-1200))<50.5f){
-			System.out.println(testCent - recCent);
+			System.out.println(testCent - (recCent-1200));
 			return new int[]{1,Math.round((Math.abs(testCent - (recCent-1200))))};
 		} else if (Math.abs(testCent - (recCent+1200))<50.5f){
-			System.out.println(testCent - recCent);
+			System.out.println(testCent - (recCent+1200));
+			return new int[]{1,Math.round((Math.abs(testCent - (recCent+1200))))};
+		} else if (Math.abs(testCent - (recCent-2400))<50.5f){
+			System.out.println(testCent - (recCent-2400));
+			return new int[]{1,Math.round((Math.abs(testCent - (recCent-1200))))};
+		} else if (Math.abs(testCent - (recCent+2400))<50.5f){
+			System.out.println(testCent - (recCent+2400));
 			return new int[]{1,Math.round((Math.abs(testCent - (recCent+1200))))};
 		} else {
 			System.out.println(testCent - recCent);

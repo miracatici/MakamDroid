@@ -52,7 +52,7 @@ import javazoom.jl.decoder.JavaLayerException;
 /**
  * Static audio utility methods.
  */
-public abstract class AudioUtilities {
+public class AudioUtilities {
 	
 	public static float[][] chunkArray(float[] array, int chunkSize) {
         int numOfChunks = (array.length/chunkSize)+1;

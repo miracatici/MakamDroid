@@ -34,6 +34,7 @@ public class GuitarString {
 	private final double DECAY_FACTOR = 0.996;
 	private BddQueue<Double> string;
 	private int tics;
+	private float duration;
 
 	/**
 	 * Creates a guitar string of the given frequency.
@@ -46,8 +47,8 @@ public class GuitarString {
 	 * This operation should throw an IllegalArgumentException if the frequency
 	 * is less than 1.0 or greater than the default sampling rate.
 	 */
-	public GuitarString() {
-	
+	public GuitarString(float duration) {
+		this.duration = duration;
 	}
 	public void createString(float frequency) {
 		// TODO Implement this method
@@ -128,7 +129,7 @@ public class GuitarString {
 		return this.tics;
 	}
 	public float[] getBuffer(){
-		float[] buff = new float[88200];
+		float[] buff = new float[Math.round((44100f*duration))];
 		for (int i = 0; i < buff.length; i++) {
 			double temp = sample();
 			buff[i] = (float) temp;
