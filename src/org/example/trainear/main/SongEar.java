@@ -10,7 +10,6 @@ import org.example.trainear.synth.SynthPlayer;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
-import android.media.AudioTrack;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -21,6 +20,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,11 +29,11 @@ public class SongEar extends Activity {
 	public static SynthPlayer question;
 	private TextView songName, peakRes;
 	public static TextView statusS;
-	final int FILE_CHOOSER=1;
 	public static int NN = 2;
 	public static float[] peaks;
 	public static byte[] rawData;
-	AudioTrack audioTrack = null;
+	final int FILE_CHOOSER=1;
+	private ImageView resImg1S,resImg2S,resImg3S,resImg4S,resImg5S;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -60,11 +60,36 @@ public class SongEar extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	private void setProps(){
+		resImg1S = (ImageView) findViewById(R.id.resImg1S);
+		resImg2S = (ImageView) findViewById(R.id.resImg2S);
+		resImg3S = (ImageView) findViewById(R.id.resImg3S);
+		resImg4S = (ImageView) findViewById(R.id.resImg4S);
+		resImg5S = (ImageView) findViewById(R.id.resImg5S);
 		statusS = (TextView) findViewById(R.id.statusS);
 		question = new SynthPlayer(statusS,1f);
 		songName = (TextView) findViewById(R.id.songName);
 		peakRes = (TextView) findViewById(R.id.peakRes);
 		final Button btnPlayS = (Button) findViewById(R.id.btnPlayS);
+		Button btnNextS = (Button) findViewById(R.id.btnNextS);
+		btnNextS.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				question.stopSynth();
+				question.next();
+				btnPlayS.setText("Play");
+				setResultImage(0,0,0,0);			
+			}
+		});
+		Button btnPrevS = (Button) findViewById(R.id.btnPrevS);
+		btnPrevS.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				question.stopSynth();
+				question.previous();
+				btnPlayS.setText("Play");
+				setResultImage(0,0,0,0);			
+			}
+		});
 		btnPlayS.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -124,6 +149,47 @@ public class SongEar extends Activity {
 	        }
 	    }                   
 	}
+	private void setResultImage(int... results){
+		switch(results.length){
+			case 1:
+				changeImage(resImg1S,results[0]);
+				break;
+			case 2:
+				changeImage(resImg1S,results[0]);
+				changeImage(resImg2S,results[1]);
+				break;	
+			case 3:
+				changeImage(resImg1S,results[0]);
+				changeImage(resImg2S,results[1]);
+				changeImage(resImg3S,results[2]);
+				break;
+			case 4:
+				changeImage(resImg1S,results[0]);
+				changeImage(resImg2S,results[1]);
+				changeImage(resImg3S,results[2]);
+				changeImage(resImg4S,results[3]);
+				break;
+			case 5:
+				changeImage(resImg1S,results[0]);
+				changeImage(resImg2S,results[1]);
+				changeImage(resImg3S,results[2]);
+				changeImage(resImg4S,results[3]);
+				changeImage(resImg5S,results[4]);
+				break;		
+		}		
+	}
+	private void changeImage(ImageView img, int res){   // 0 is non available ** 1 is true ** 2 is false
+		switch(res){
+			case 0:
+				img.setImageResource(android.R.drawable.presence_invisible);
+				break;
+			case 1:
+				img.setImageResource(android.R.drawable.presence_online);
+				break;
+			case 2:
+				img.setImageResource(android.R.drawable.presence_busy);
+		}
+	}
 }
 class AnalyzeAudio extends AsyncTask<String, Void, float[]> {
 	
@@ -180,5 +246,5 @@ class AnalyzeAudio extends AsyncTask<String, Void, float[]> {
 			});
 		}
 	}
-    
+	
 }

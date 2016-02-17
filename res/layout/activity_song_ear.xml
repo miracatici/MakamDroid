@@ -142,7 +142,7 @@
             android:layout_height="match_parent" >
 
             <ImageView
-                android:id="@+id/ImageView04"
+                android:id="@+id/resImg1S"
                 android:layout_width="wrap_content"
                 android:layout_height="59dp"
                 android:layout_gravity="bottom"
@@ -150,7 +150,7 @@
                 android:src="@android:drawable/presence_invisible" />
 
             <ImageView
-                android:id="@+id/ImageView03"
+                android:id="@+id/resImg2S"
                 android:layout_width="wrap_content"
                 android:layout_height="59dp"
                 android:layout_gravity="bottom"
@@ -158,7 +158,7 @@
                 android:src="@android:drawable/presence_invisible" />
 
             <ImageView
-                android:id="@+id/ImageView02"
+                android:id="@+id/resImg3S"
                 android:layout_width="wrap_content"
                 android:layout_height="59dp"
                 android:layout_gravity="bottom"
@@ -166,7 +166,7 @@
                 android:src="@android:drawable/presence_invisible" />
 
             <ImageView
-                android:id="@+id/ImageView01"
+                android:id="@+id/resImg4S"
                 android:layout_width="wrap_content"
                 android:layout_height="59dp"
                 android:layout_gravity="bottom"
@@ -174,7 +174,7 @@
                 android:src="@android:drawable/presence_invisible" />
 
             <ImageView
-                android:id="@+id/imageView1"
+                android:id="@+id/resImg5S"
                 android:layout_width="wrap_content"
                 android:layout_height="59dp"
                 android:layout_gravity="bottom"

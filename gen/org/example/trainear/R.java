@@ -51,10 +51,6 @@ public final class R {
         public static final int zip32=0x7f02000f;
     }
     public static final class id {
-        public static final int ImageView01=0x7f0a002e;
-        public static final int ImageView02=0x7f0a002d;
-        public static final int ImageView03=0x7f0a002c;
-        public static final int ImageView04=0x7f0a002b;
         public static final int LinearLayout=0x7f0a0008;
         public static final int TextView01=0x7f0a0005;
         public static final int TextView02=0x7f0a0007;
@@ -83,7 +79,6 @@ public final class R {
         public static final int dif2=0x7f0a0039;
         public static final int dif3=0x7f0a003a;
         public static final int dif4=0x7f0a003b;
-        public static final int imageView1=0x7f0a002f;
         public static final int img1=0x7f0a0048;
         public static final int linearLayout1=0x7f0a0000;
         public static final int peakRes=0x7f0a002a;
@@ -103,6 +98,11 @@ public final class R {
         public static final int quizAnswer2=0x7f0a0041;
         public static final int quizAnswer2M=0x7f0a0016;
         public static final int quizAnswer3M=0x7f0a0019;
+        public static final int resImg1S=0x7f0a002b;
+        public static final int resImg2S=0x7f0a002c;
+        public static final int resImg3S=0x7f0a002d;
+        public static final int resImg4S=0x7f0a002e;
+        public static final int resImg5S=0x7f0a002f;
         public static final int resultImg1=0x7f0a0044;
         public static final int resultImg1M=0x7f0a001c;
         public static final int resultImg2=0x7f0a0045;
