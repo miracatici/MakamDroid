@@ -77,25 +77,21 @@ public class SynthPlayer {
 		});	
 	}
 	public void previous(){
-		if(position == 0){
-			 
-		} else {
+		if(position != 0){
 			position--;
 			freqData = new float[noteNumber];
 			for (int i = position; i < position + noteNumber; i++) {
 				freqData[i-position] = AudioUtilities.centToHertz(intervalData[i]);
 			}
-		}		
+		}
 	}
 	public void next(){
-		if(position == intervalData.length - noteNumber){
-			 
-		} else {
+		if(position != (intervalData.length - noteNumber)){
 			position++;
 			freqData = new float[noteNumber];
 			for (int i = position; i < position + noteNumber; i++) {
 				freqData[i-position] = AudioUtilities.centToHertz(intervalData[i]);
-			}
+			}	 
 		}	
 	}
 	private float[] mixTracks(float[] sum, float[] element ){  // Play mix down of notes

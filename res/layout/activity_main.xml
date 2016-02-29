@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="52dp"
                 android:gravity="right"
-                android:text="12TET for Conervatory"
+                android:text="12TET for Conservatory"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="#FFFFFF" />
 

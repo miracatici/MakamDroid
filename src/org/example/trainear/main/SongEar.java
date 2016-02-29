@@ -3,10 +3,13 @@ package org.example.trainear.main;
 import java.io.IOException;
 
 import org.example.trainear.R;
+import org.example.trainear.backEnd.Answer;
 import org.example.trainear.backEnd.AudioRead;
 import org.example.trainear.menu.FileChooser;
 import org.example.trainear.synth.SynthPlayer;
+import org.example.trainear.utilities.AudioUtilities;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -14,6 +17,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -26,6 +30,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class SongEar extends Activity {
+	private Answer answer;
 	public static SynthPlayer question;
 	private TextView songName, peakRes;
 	public static TextView statusS;
@@ -60,6 +65,7 @@ public class SongEar extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	private void setProps(){
+		answer = new Answer();
 		resImg1S = (ImageView) findViewById(R.id.resImg1S);
 		resImg2S = (ImageView) findViewById(R.id.resImg2S);
 		resImg3S = (ImageView) findViewById(R.id.resImg3S);
@@ -70,7 +76,11 @@ public class SongEar extends Activity {
 		songName = (TextView) findViewById(R.id.songName);
 		peakRes = (TextView) findViewById(R.id.peakRes);
 		final Button btnPlayS = (Button) findViewById(R.id.btnPlayS);
+		final Button btnPlaySA = (Button) findViewById(R.id.btnPlaySA);
+		final Button btnRecS = (Button) findViewById(R.id.btnRecS);
 		Button btnNextS = (Button) findViewById(R.id.btnNextS);
+		Button btnPrevS = (Button) findViewById(R.id.btnPrevS);
+		Button btnMenuS = (Button) findViewById(R.id.btnMenuSel);
 		btnNextS.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -80,7 +90,46 @@ public class SongEar extends Activity {
 				setResultImage(0,0,0,0);			
 			}
 		});
-		Button btnPrevS = (Button) findViewById(R.id.btnPrevS);
+		btnRecS.setOnTouchListener(new View.OnTouchListener() {
+	        @SuppressLint("ClickableViewAccessibility")
+			@Override
+	        public boolean onTouch(View v, MotionEvent event) {
+	            switch(event.getAction()) {
+	                case MotionEvent.ACTION_DOWN:
+	                	answer.startRecord();
+	                	btnRecS.setPressed(true);
+						btnPlaySA.setEnabled(false);
+	                    return true;
+	                case MotionEvent.ACTION_UP:
+	                	answer.stopRecord();
+	                	btnRecS.setPressed(false);
+						btnPlaySA.setEnabled(true);
+						try {
+							noteCompare(question,answer);							
+						} catch (Exception e){
+							e.printStackTrace();
+							Toast.makeText(SongEar.this, "Press long and record, then release", Toast.LENGTH_SHORT).show();
+						}
+	                    return true;
+	            }
+	            return false;
+	        }
+	    });
+	    btnPlaySA.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				switch(btnPlaySA.getText().toString()) {
+				case "Play":
+					btnPlaySA.setText("Stop");
+					answer.startPlay();
+					break;
+				case "Stop" :
+					btnPlaySA.setText("Play");
+					answer.stopPlay();
+					break;
+				}						
+			}
+		});
 		btnPrevS.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -110,7 +159,13 @@ public class SongEar extends Activity {
 				}
 			}
 		});
-		Button btnMenuS = (Button) findViewById(R.id.btnMenuSel);
+		btnMenuS.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(SongEar.this, FileChooser.class);
+				startActivityForResult(intent, FILE_CHOOSER);
+			}
+		});
 		Spinner quesListS = (Spinner) findViewById(R.id.spinnerS);
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
 				R.array.quesListM, android.R.layout.simple_spinner_item);
@@ -130,13 +185,6 @@ public class SongEar extends Activity {
 				
 			}
 		});
-		btnMenuS.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(SongEar.this, FileChooser.class);
-				startActivityForResult(intent, FILE_CHOOSER);
-			}
-		});
 	}
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 	    if ((requestCode == FILE_CHOOSER) && (resultCode == RESULT_OK)) {
@@ -145,7 +193,7 @@ public class SongEar extends Activity {
 	        	songName.setText(fileSelected);
 				new AnalyzeAudio().execute(data.getStringExtra("filePath"));
 	        } else {
-				Toast.makeText(this, "Please select mp3 of wav file", Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, "Please select mp3 or wav file", Toast.LENGTH_SHORT).show();
 	        }
 	    }                   
 	}
@@ -190,6 +238,42 @@ public class SongEar extends Activity {
 				img.setImageResource(android.R.drawable.presence_busy);
 		}
 	}
+	private void noteCompare(SynthPlayer q, Answer a) {
+		float[] resQues = q.getQuestionResult();
+		float[] resAns = a.analyze(NN);
+		int[] answers = new int[NN];
+		int[] difference = new int[NN];
+		for (int i = 0; i < answers.length; i++) {
+			int qCent = AudioUtilities.hertzToCent(resQues[i]);
+			int aCent = AudioUtilities.hertzToCent(resAns[i]);
+			int[] temp = centCompare(qCent, aCent);
+			answers[i] = temp[0];
+			difference[i] = temp[1];
+		}
+//		setDifferenceResult(difference);
+		setResultImage(answers);
+	}
+	private int[] centCompare(float testCent, float recCent){
+		if(Math.abs(testCent - recCent)<50.5f){
+			System.out.println(testCent - recCent);
+			return new int[]{1,Math.round((Math.abs(testCent - recCent)))};
+		} else if (Math.abs(testCent - (recCent-1200))<50.5f){
+			System.out.println(testCent - (recCent-1200));
+			return new int[]{1,Math.round((Math.abs(testCent - (recCent-1200))))};
+		} else if (Math.abs(testCent - (recCent+1200))<50.5f){
+			System.out.println(testCent - (recCent+1200));
+			return new int[]{1,Math.round((Math.abs(testCent - (recCent+1200))))};
+		} else if (Math.abs(testCent - (recCent-2400))<50.5f){
+			System.out.println(testCent - (recCent-2400));
+			return new int[]{1,Math.round((Math.abs(testCent - (recCent-1200))))};
+		} else if (Math.abs(testCent - (recCent+2400))<50.5f){
+			System.out.println(testCent - (recCent+2400));
+			return new int[]{1,Math.round((Math.abs(testCent - (recCent+1200))))};
+		} else {
+			System.out.println(testCent - recCent);
+			return new int[]{2,Math.round((Math.abs(testCent - recCent)))};
+		}
+	}
 }
 class AnalyzeAudio extends AsyncTask<String, Void, float[]> {
 	
@@ -221,7 +305,6 @@ class AnalyzeAudio extends AsyncTask<String, Void, float[]> {
 		}
 		return null;
 	}
-	
 	@Override
 	protected void onPostExecute(float[] result) {
 		if(result == null){
@@ -245,6 +328,5 @@ class AnalyzeAudio extends AsyncTask<String, Void, float[]> {
 				}
 			});
 		}
-	}
-	
+	}	
 }

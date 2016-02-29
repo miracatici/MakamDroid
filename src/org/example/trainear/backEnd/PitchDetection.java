@@ -58,7 +58,7 @@ public class PitchDetection {
 	}
 	
 	private void estimate(float[] floatData, float sampleRate){
-		bufferSize = (int) Math.round(sampleRate*0.04);
+		bufferSize = (int) Math.round(sampleRate*0.01);
 		float[][] chunked = AudioUtilities.chunkArray(floatData,bufferSize);
 		Yin yin = new Yin(sampleRate,bufferSize,0.1);
 		pitchResult = new float[chunked.length];
