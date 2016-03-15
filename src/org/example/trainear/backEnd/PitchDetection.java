@@ -54,11 +54,11 @@ public class PitchDetection {
 
 	
 	public PitchDetection(float[] audioFloatData,float samplerate) {
-		estimate(audioFloatData,samplerate);
+		estimateAndroid(audioFloatData,samplerate);
 	}
 	
-	private void estimate(float[] floatData, float sampleRate){
-		bufferSize = (int) Math.round(sampleRate*0.01);
+	private void estimateAndroid(float[] floatData, float sampleRate){
+		bufferSize = (int) Math.round(sampleRate*0.03);
 		float[][] chunked = AudioUtilities.chunkArray(floatData,bufferSize);
 		Yin yin = new Yin(sampleRate,bufferSize,0.1);
 		pitchResult = new float[chunked.length];

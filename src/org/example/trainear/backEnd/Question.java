@@ -48,6 +48,7 @@ public class Question {
 		try {
 			clipDatas =  deserialize(assets.open(("settings/"+questionType+"_" + String.valueOf(noteNumber)+".ser"),AssetManager.ACCESS_BUFFER));
 			files = assets.list(FOLDER);
+			System.out.println(files[0]);
 			soundNumber = files.length;
 			for (int i = 0; i < files.length; i++) {
 				sounds.load(assets.openFd(FOLDER+"/"+files[i]), 1);
