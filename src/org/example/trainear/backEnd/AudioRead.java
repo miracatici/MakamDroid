@@ -9,7 +9,7 @@ import org.apache.commons.io.IOUtils;
 import org.example.trainear.utilities.AudioUtilities;
 
 import backEnd.Histogram;
-import backEnd.PitchDetection;;
+import backEnd.PitchDetection;
 
 public class AudioRead {
 	public AudioRead(){
@@ -42,5 +42,6 @@ public class AudioRead {
 		PitchDetection pd = new PitchDetection("file",rawFloat, 44100f);
 		Histogram h = new Histogram(pd);
 		return h.getPeaksCent();
+//		return new float[]{4,2};
 	}
 }
