@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "86451511414",
+    "firebase_url": "https://smartserver-7cc20.firebaseio.com",
+    "project_id": "smartserver-7cc20",
+    "storage_bucket": "smartserver-7cc20.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:86451511414:android:ad283ed916a788cb",
+        "android_client_info": {
+          "package_name": "org.example.trainear"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "86451511414-68mej5j8sfs5tuism41hdf46h7grk9j0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7f0a8dfpzt-FvWyLl0U6ZLZ7OzDWAAkA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
