@@ -142,4 +142,9 @@ public class PitchDetection {
 
 		return answerResult;
 	}
+	public float[] getAnswerResult(int noteNumber){
+		float[] answerResult = null;
+		answerResult = getChunkResults(noteNumber);
+		return answerResult;
+	}
 }

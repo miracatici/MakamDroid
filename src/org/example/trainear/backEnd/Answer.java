@@ -1,8 +1,8 @@
 package org.example.trainear.backEnd;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
+import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.example.trainear.utilities.AudioUtilities;
 
 import android.media.AudioFormat;
